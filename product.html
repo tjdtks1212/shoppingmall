@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>피그먼트 오버핏 코튼 셔츠 - STYLEHUB</title>
+<style>
+:root {
+  --navy: #0c447c;
+  --navy-dark: #042c53;
+  --navy-light: #e6f1fb;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-muted: #9b9b96;
+  --border: #e5e5e2;
+  --border-strong: #c9c9c4;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+  --radius: 10px;
+  --max-width: 1160px;
+  --heart-red: #e0245e;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="dark"] {
+  --navy: #3d8bd4;
+  --navy-dark: #2a6bab;
+  --navy-light: rgba(61, 139, 212, 0.18);
+  --text-primary: #f0f2f5;
+  --text-secondary: #b7bec7;
+  --text-muted: #7c848d;
+  --border: #2b313a;
+  --border-strong: #3c434d;
+  --bg: #12161b;
+  --bg-alt: #1a1f26;
+  --nav-bg: rgba(18, 22, 27, 0.75);
+  --badge-bg: rgba(26, 31, 38, 0.85);
+}
+
+:root[data-theme="dark"] body {
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease, opacity 0.22s ease;
+  animation: page-fade-in 0.35s ease;
+}
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body.page-fade-out {
+  opacity: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* utility bar */
+.util-bar {
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.util-bar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+}
+.util-bar .util-links {
+  display: flex;
+  gap: 16px;
+}
+
+/* main nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.25s ease, background 0.3s ease;
+}
+.nav.scrolled {
+  box-shadow: 0 4px 20px rgba(12, 68, 124, 0.08);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.nav .menu {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+.nav .menu a {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+.nav .menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--navy);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav .menu a:hover {
+  color: var(--navy);
+}
+.nav .menu a:hover::after,
+.nav .menu a.active::after {
+  transform: scaleX(1);
+}
+.nav .menu a.active {
+  font-weight: 700;
+  color: var(--navy);
+}
+.nav .icons {
+  display: flex;
+  gap: 18px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+.nav .icons a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav .icons a:hover {
+  color: var(--navy);
+}
+.nav .icons a.nav-icon-active {
+  color: var(--heart-red);
+}
+.nav .icons a.nav-icon-active .heart-icon {
+  fill: currentColor;
+  animation: heart-pop 0.35s ease;
+}
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* breadcrumb */
+.breadcrumb {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 20px 0 8px;
+}
+
+/* hero */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  padding: 88px 0;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 10%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 70%);
+}
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+.hero .eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--navy-light);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0 0 22px;
+  line-height: 1.25;
+}
+.hero h1 .accent-text {
+  background: linear-gradient(90deg, #ffffff 0%, #bcd9f2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .btn-primary {
+  background: #fff;
+  color: var(--navy);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* brand chip strip */
+.brand-strip {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.brand-strip h3,
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+.chip-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+.chip:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+.chip.removable {
+  background: var(--bg-alt);
+}
+.chip button {
+  border: none;
+  background: none;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 0;
+}
+
+/* section */
+.section {
+  padding: 40px 0;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-head .more {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* product grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.card {
+  display: block;
+}
+.card {
+  transition: transform 0.2s ease;
+}
+.card .thumb {
+  background: var(--bg-alt);
+  border-radius: 14px;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(12, 68, 124, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card:hover .thumb {
+  box-shadow: 0 16px 28px rgba(12, 68, 124, 0.16);
+  transform: translateY(-4px);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .thumb img {
+  transform: scale(1.06);
+}
+.illustration {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+.card:hover .illustration {
+  transform: scale(1.06);
+}
+.illustration-svg {
+  width: 64%;
+  height: auto;
+}
+.illustration-small .illustration-svg {
+  width: 78%;
+}
+#main-product-image .illustration-svg {
+  width: 82%;
+}
+
+.card .name {
+  transition: color 0.2s ease;
+}
+.card:hover .name {
+  color: var(--navy);
+}
+.card .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--badge-bg);
+  backdrop-filter: blur(4px);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.card-wishlist-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.card-wishlist-btn:hover {
+  transform: scale(1.1);
+  color: var(--navy);
+}
+.card-wishlist-btn.wishlist-active {
+  color: var(--heart-red);
+}
+.card-wishlist-btn.wishlist-active i {
+  animation: heart-pop 0.35s ease;
+}
+.wishlist-active .heart-icon {
+  fill: currentColor;
+}
+.heart-icon {
+  animation: none;
+}
+.wishlist-active .heart-icon {
+  animation: heart-pop 0.35s ease;
+}
+.wishlist-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 260px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  padding: 14px;
+  z-index: 50;
+  display: none;
+}
+.wishlist-panel.open {
+  display: block;
+}
+.wishlist-panel h5 {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+.wishlist-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.wishlist-panel li {
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.wishlist-panel li:last-child {
+  border-bottom: none;
+}
+.wishlist-panel .empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+.nav .icons a {
+  position: relative;
+}
+.card .brand {
+  font-size: 11px;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 10px 0 2px;
+}
+.card .name {
+  font-size: 13px;
+  margin: 0 0 2px;
+  color: var(--text-primary);
+}
+.card .price {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* buttons */
+.btn {
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+  background: var(--navy-light);
+}
+.btn-primary {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 16px rgba(12, 68, 124, 0.24);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--navy-dark);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(12, 68, 124, 0.32);
+}
+.btn-icon {
+  width: 44px;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon.wishlist-active {
+  background: #fdeef2;
+  border-color: var(--heart-red);
+  color: var(--heart-red);
+}
+.btn-icon.wishlist-active .heart-icon {
+  fill: currentColor;
+  animation: heart-pop 0.35s ease;
+}
+
+/* footer */
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  padding: 48px 0 0;
+  margin-top: 48px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 36px;
+}
+.footer-col-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 14px;
+}
+.footer-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
+}
+.footer-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+.footer-phone {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.footer-link {
+  font-size: 12px;
+  margin: 0 0 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: var(--navy);
+}
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+.footer-social a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+.footer-social a:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.footer-newsletter {
+  display: flex;
+  gap: 8px;
+}
+.footer-newsletter input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: inherit;
+}
+.footer-newsletter button {
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.footer-legal {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+.sticky-buybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+  padding: 14px 0;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+  z-index: 100;
+}
+.sticky-buybar.visible {
+  transform: translateY(0);
+}
+.sticky-buybar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.sticky-buybar-info .brand {
+  font-size: 11px;
+}
+
+/* layout helpers */
+.layout-2col {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 28px;
+}
+.layout-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+}
+.layout-cart {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+}
+
+/* filter sidebar */
+.filter-group {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+.filter-group h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.filter-group .cat-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.filter-group .cat-item.active {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* toolbar / sort */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+select {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* tabs */
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.review-card {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.review-stars {
+  color: #ba7517;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.review-author {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.review-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.review-body {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+.tabs span {
+  padding-bottom: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.tabs span.active {
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--text-primary);
+}
+
+/* search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 10px 18px;
+  max-width: 480px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+}
+
+/* pdp specific */
+.pdp-gallery-thumb {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.pdp-gallery-thumb div {
+  background: var(--bg-alt);
+  border-radius: 6px;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+}
+.pdp-gallery-thumb div.active {
+  border: 2px solid var(--navy);
+}
+.pdp-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.pdp-price {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.pdp-rating {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.option-row {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+.option-row h5 {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  font-weight: 400;
+}
+.swatch-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.swatch.selected {
+  border: 2px solid var(--navy);
+}
+.size-row {
+  display: flex;
+  gap: 8px;
+}
+.size-chip {
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.size-chip.selected {
+  border: 2px solid var(--navy);
+  font-weight: 700;
+}
+.size-chip.disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+}
+.qty-control button {
+  border: none;
+  background: none;
+  font-size: 14px;
+}
+.qty-control input.qty-value {
+  width: 34px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text-primary);
+  -moz-appearance: textfield;
+}
+.qty-control input.qty-value::-webkit-outer-spin-button,
+.qty-control input.qty-value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.action-row {
+  display: flex;
+  gap: 10px;
+}
+.action-row .btn-primary {
+  flex: 2;
+  padding: 14px;
+}
+.action-row .btn {
+  flex: 1;
+}
+
+/* cart specific */
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.cart-item .thumb {
+  width: 80px;
+  height: 100px;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+.cart-item .info {
+  flex: 1;
+}
+.cart-item .price {
+  width: 90px;
+  text-align: right;
+}
+.summary-card {
+  background: var(--bg-alt);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.summary-card h4 {
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.summary-row.total {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 860px) {
+  .nav .menu {
+    display: none;
+  }
+  .nav .wrap {
+    height: 58px;
+  }
+  .nav .logo {
+    font-size: 19px;
+  }
+  .util-bar {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .layout-2col,
+  .layout-detail,
+  .layout-cart {
+    grid-template-columns: 1fr;
+  }
+  .layout-2col > div:first-child {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .layout-2col .filter-group {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-legal {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .outfit-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 56px 0;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .coupon-fab span {
+    display: none;
+  }
+  .coupon-fab {
+    padding: 14px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .wheel-wrap {
+    width: 180px;
+    height: 180px;
+  }
+  .coupon-modal,
+  .sizeguide-overlay .coupon-modal {
+    width: 92vw;
+  }
+  .sticky-buybar-info p {
+    font-size: 12px;
+  }
+  .action-row {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid,
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .nav .icons {
+    gap: 10px;
+    font-size: 16px;
+  }
+  .wrap {
+    padding: 0 16px;
+  }
+}
+
+
+/* 쿠폰 룰렛 */
+.coupon-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 150;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(12, 68, 124, 0.32);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  animation: fab-float 2.6s ease-in-out infinite;
+}
+.coupon-fab span {
+  font-size: 13px;
+  font-weight: 700;
+}
+.coupon-fab:hover {
+  transform: scale(1.06);
+}
+@keyframes fab-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.coupon-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-modal-overlay.open {
+  display: flex;
+}
+.coupon-modal {
+  position: relative;
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  width: 340px;
+  max-width: 90vw;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+.coupon-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.coupon-modal-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.coupon-modal-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+.wheel-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid var(--heart-red);
+  z-index: 2;
+}
+.wheel-svg-container {
+  width: 100%;
+  height: 100%;
+  transition: transform 3.5s cubic-bezier(0.15, 0.7, 0.2, 1);
+}
+.coupon-result {
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 20px;
+  margin: 14px 0 0;
+  color: var(--navy);
+}
+
+/* 컨페티 (전역) */
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  width: 8px;
+  height: 14px;
+  z-index: 999;
+  pointer-events: none;
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.35, 0, 0.65, 1);
+  animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0.2; }
+}
+
+/* 이스터에그 토스트 */
+.easter-toast {
+  position: fixed;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--text-primary);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.easter-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 빠른보기 */
+.quick-view-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(20, 24, 30, 0.82);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.card:hover .quick-view-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.size-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.size-guide-table th,
+.size-guide-table td {
+  border: 1px solid var(--border);
+  padding: 8px 6px;
+  text-align: center;
+}
+.size-guide-table th {
+  background: var(--bg-alt);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+</style>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css" />
+</head>
+<body>
+
+<div class="util-bar">
+  <div class="wrap">
+    <span>무료배송 5만원 이상 구매시</span>
+    <div class="util-links">
+      <a href="#">로그인</a>
+      <a href="#">회원가입</a>
+      <a href="#">고객센터</a>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">STYLEHUB</a>
+    <div class="menu">
+      <a href="category.html">BEST</a>
+      <a href="category.html">NEW</a>
+      <a href="category.html">브랜드관</a>
+      <a href="category.html">아우터</a>
+      <a href="category.html">상의</a>
+      <a href="category.html">하의</a>
+      <a href="category.html">ACC</a>
+    </div>
+    <div class="icons">
+      <a href="#" id="theme-toggle-btn" title="다크모드 전환"><i class="ti ti-moon"></i></a>
+      <a href="search.html"><i class="ti ti-search"></i></a>
+      <span style="position: relative; display: inline-flex;">
+        <a href="#" id="nav-wishlist-btn"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg><span class="cart-count" id="wishlist-count" style="display:none;">0</span></a>
+        <div class="wishlist-panel" id="wishlist-panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+            <h5 style="margin:0;">찜한 상품 (이 페이지 기준)</h5>
+            <button id="wishlist-clear-btn" style="border:none; background:none; font-size:11px; color:var(--text-muted); cursor:pointer;">전체 삭제</button>
+          </div>
+          <ul id="wishlist-list"></ul>
+          <p class="empty" id="wishlist-empty">💔 아직 찜한 상품이 없어요.</p>
+        </div>
+      </span>
+      <a href="cart.html"><i class="ti ti-shopping-bag"></i><span class="cart-count">3</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="breadcrumb">홈 &gt; 상의 &gt; 셔츠 &gt; 피그먼트 오버핏 코튼 셔츠</p>
+
+  <div class="reveal layout-detail" style="margin-top: 20px;">
+    <div>
+      <div class="thumb" style="aspect-ratio: 3/4;"><div class="illustration" id="main-product-image" role="img" aria-label="피그먼트 오버핏 코튼 셔츠"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    </svg></div></div>
+      <div class="pdp-gallery-thumb">
+        <div class="gallery-thumb-item active" data-view="shirt"><div class="illustration illustration-small"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    </svg></div></div>
+        <div class="gallery-thumb-item" data-view="shirt_folded"><div class="illustration illustration-small"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="55" y="70" width="130" height="150" rx="10" fill="var(--navy-light)" stroke="var(--navy)"/>
+        <rect x="70" y="55" width="100" height="20" rx="6" fill="var(--navy-light)" stroke="var(--navy)"/>
+        <line x1="55" y1="120" x2="185" y2="120" stroke="var(--navy)" stroke-width="2" opacity="0.5"/>
+        <line x1="55" y1="170" x2="185" y2="170" stroke="var(--navy)" stroke-width="2" opacity="0.5"/>
+        </svg></div></div>
+        <div class="gallery-thumb-item" data-view="shirt_back"><div class="illustration illustration-small"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.4"/></svg></div></div>
+        <div class="gallery-thumb-item" data-view="shirt_stripe"><div class="illustration illustration-small"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    <line x1="82" y1="100" x2="158" y2="100" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="120" x2="158" y2="120" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="140" x2="158" y2="140" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="160" x2="158" y2="160" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="180" x2="158" y2="180" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="200" x2="158" y2="200" stroke="var(--navy)" stroke-width="3" opacity="0.35"/></svg></div></div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size: 13px; color: var(--navy); font-weight: 700; margin: 0 0 6px;">ROUTINE</p>
+      <p class="pdp-title">피그먼트 오버핏 코튼 셔츠</p>
+      <p class="pdp-price">39,000원</p>
+      <div class="pdp-rating"><i class="ti ti-star" style="color:#ba7517;"></i> 4.7 (128개 리뷰)</div>
+      <div id="social-proof" style="display:flex; gap:14px; font-size:12px; color:var(--heart-red); font-weight:600; margin:0 0 16px;">
+        <span id="live-viewers"><i class="ti ti-eye" style="margin-right:3px;"></i>지금 12명이 보는 중</span>
+        <span id="today-sold" style="color:var(--text-secondary); font-weight:500;"><i class="ti ti-flame" style="margin-right:3px; color:#f2761c;"></i>오늘 34개 판매</span>
+      </div>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin:0 0 20px; padding-bottom:20px; border-bottom:1px solid var(--border);">가볍게 걸치기 좋은 데일리 오버핏 셔츠예요. 피그먼트 다잉 처리로 은은한 빈티지 톤을 살렸고, 도톰한 면 원단이라 계절 상관없이 레이어드하기 좋아요. 캐주얼하게 입어도, 슬랙스에 셔츠 안으로 넣어 입어도 잘 어울려요.</p>
+
+      <div class="option-row">
+        <h5>색상</h5>
+        <div class="swatch-row">
+          <div class="swatch selected" style="background:#2c2c2a;"></div>
+          <div class="swatch" style="background:#d3d1c7;"></div>
+        </div>
+        <h5 style="display:flex; align-items:center; justify-content:space-between;">사이즈 <button id="size-guide-btn" style="border:none; background:none; font-size:11px; color:var(--navy); text-decoration:underline; cursor:pointer; font-family:inherit;">사이즈 가이드</button></h5>
+        <div class="size-row">
+          <span class="size-chip">S</span>
+          <span class="size-chip selected">M</span>
+          <span class="size-chip">L</span>
+          <span class="size-chip disabled">XL 품절</span>
+        </div>
+      </div>
+
+      <div class="qty-row">
+        <span>수량</span>
+        <div class="qty-control">
+          <button class="qty-minus"><i class="ti ti-minus"></i></button>
+          <input type="number" class="qty-value" value="1" min="1" max="99" inputmode="numeric" />
+          <button class="qty-plus"><i class="ti ti-plus"></i></button>
+        </div>
+      </div>
+
+      <div class="action-row" id="main-action-row">
+        <button class="btn btn-icon" id="wishlist-btn" data-brand="ROUTINE" data-name="피그먼트 오버핏 코튼 셔츠"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button>
+        <button class="btn" data-action="add-to-cart">장바구니</button>
+        <button class="btn btn-primary">바로 구매</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs" style="margin-top: 32px;">
+    <span class="active" data-tab="detail">상세정보</span>
+    <span data-tab="reviews">리뷰 (128)</span>
+    <span data-tab="qna">문의</span>
+    <span data-tab="shipping">배송/교환/반품</span>
+  </div>
+
+  <div class="tab-panel" id="tab-detail" style="padding:24px 0;">
+    <p style="font-size:13px; line-height:1.8; color:var(--text-secondary); margin:0 0 16px;">피그먼트 다잉 처리를 거친 도톰한 코튼 원단으로, 세탁을 거듭할수록 자연스러운 빈티지 톤이 살아나요. 오버핏 실루엣이라 안에 레이어드하기 좋고, 앞판 플라켓 스티치까지 신경 쓴 디테일이에요.</p>
+    <ul style="font-size:13px; line-height:2; color:var(--text-secondary); padding-left:18px; margin:0;">
+      <li>소재: 면 100%</li>
+      <li>제조국: 대한민국</li>
+      <li>세탁방법: 단독 손세탁 권장, 찬물 사용</li>
+      <li>모델 착용 사이즈: M (172cm / 62kg)</li>
+    </ul>
+  </div>
+
+  <div class="tab-panel" id="tab-reviews" style="display:none; padding:24px 0;">
+    <div class="review-card">
+      <div class="review-head"><span class="review-stars">★★★★★</span><span class="review-author">jys**</span><span class="review-date">2026.06.21</span></div>
+      <p class="review-body">생각보다 핏이 예쁘게 떨어져요. 오버핏인데 뚱뚱해 보이지 않고 세련되게 입을 수 있어서 만족해요.</p>
+    </div>
+    <div class="review-card">
+      <div class="review-head"><span class="review-stars">★★★★☆</span><span class="review-author">min**</span><span class="review-date">2026.06.15</span></div>
+      <p class="review-body">원단이 두꺼운 편이라 봄가을에 딱 좋아요. 세탁 후에도 변형 없이 잘 입고 있어요.</p>
+    </div>
+    <div class="review-card" style="border-bottom:none;">
+      <div class="review-head"><span class="review-stars">★★★★★</span><span class="review-author">bora**</span><span class="review-date">2026.06.02</span></div>
+      <p class="review-body">색감이 사진이랑 거의 똑같아요. 재구매 의사 있습니다!</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-qna" style="display:none; padding:24px 0;">
+    <p style="font-size:13px; color:var(--text-secondary); margin:0;">등록된 상품 문의가 없어요. 궁금한 점은 고객센터로 문의해주세요.</p>
+  </div>
+
+  <div class="tab-panel" id="tab-shipping" style="display:none; padding:24px 0;">
+    <p style="font-size:13px; line-height:1.8; color:var(--text-secondary); margin:0;">5만원 이상 구매 시 무료배송, 미만 시 배송비 3,000원이 부과돼요. 교환/반품은 상품 수령 후 7일 이내 가능하며, 단순 변심의 경우 왕복 배송비가 발생할 수 있어요.</p>
+  </div>
+
+  <div class="reveal section">
+    <div class="section-head">
+      <span class="section-title">ROUTINE의 다른 상품</span>
+      <a href="category.html" class="more">브랜드관 &gt;</a>
+    </div>
+    <div class="grid">
+      <div class="thumb"><div class="illustration" role="img" aria-label="와이드 스트라이프 셔츠"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    <line x1="82" y1="100" x2="158" y2="100" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="120" x2="158" y2="120" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="140" x2="158" y2="140" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="160" x2="158" y2="160" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="180" x2="158" y2="180" stroke="var(--navy)" stroke-width="3" opacity="0.35"/><line x1="82" y1="200" x2="158" y2="200" stroke="var(--navy)" stroke-width="3" opacity="0.35"/></svg></div></div>
+      <div class="thumb"><div class="illustration" role="img" aria-label="피그먼트 오버핏 맨투맨"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M96 60 L70 82 L44 112 L66 134 L80 112 L80 222 Q80 234 94 234 L146 234 Q160 234 160 222 L160 112 L174 134 L196 112 L170 82 L144 60 L120 76 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <path d="M108 58 Q120 72 132 58" fill="none" stroke="var(--navy)" stroke-width="5"/>
+    <rect x="80" y="216" width="80" height="16" rx="6" fill="var(--navy-light)" stroke="var(--navy)" stroke-width="2.5"/>
+    <rect x="46" y="112" width="18" height="14" rx="4" fill="var(--navy-light)" stroke="var(--navy)" stroke-width="2"/>
+    <rect x="176" y="112" width="18" height="14" rx="4" fill="var(--navy-light)" stroke="var(--navy)" stroke-width="2"/>
+    </svg></div></div>
+      <div class="thumb"><div class="illustration" role="img" aria-label="헨리넥 머슬핏 반팔티"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 58 L70 78 L48 108 L70 128 L82 108 L82 222 Q82 232 92 232 L148 232 Q158 232 158 222 L158 108 L170 128 L192 108 L170 78 L145 58 Q120 78 95 58 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <path d="M100 58 Q120 82 140 58" fill="none" stroke="var(--navy)"/>
+    </svg></div></div>
+      <div class="thumb"><div class="illustration" role="img" aria-label="쿨링 린넨 셔츠"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    </svg></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <p class="footer-logo">STYLEHUB</p>
+      <p class="footer-desc">여러 브랜드를 한곳에서 만나는 편집샵이에요.<br/>매일 새로운 스타일을 만나보세요.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="#" title="X"><i class="ti ti-brand-x"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">고객센터</p>
+      <p class="footer-phone">1588-0000</p>
+      <p class="footer-desc">평일 09:00 - 18:00<br/>주말 및 공휴일 휴무</p>
+      <p class="footer-link">자주 묻는 질문</p>
+      <p class="footer-link">1:1 문의하기</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">뉴스레터 구독</p>
+      <p class="footer-desc">신상품과 할인 소식을 가장 먼저 받아보세요.</p>
+      <form class="footer-newsletter" id="newsletter-form">
+        <input type="email" placeholder="이메일 주소" required />
+        <button type="submit">구독</button>
+      </form>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <span>STYLEHUB | 사업자등록번호 000-00-00000 | 통신판매업신고 제0000호</span>
+    <span>© 2026 STYLEHUB</span>
+  </div>
+</div>
+
+<div class="sticky-buybar" id="sticky-buybar">
+  <div class="wrap sticky-buybar-inner">
+    <div class="sticky-buybar-info">
+      <p class="brand" style="margin:0;">ROUTINE</p>
+      <p style="font-size:14px; font-weight:700; margin:2px 0 0;">피그먼트 오버핏 코튼 셔츠 · <span style="color:var(--navy);">39,000원</span></p>
+    </div>
+    <div class="action-row" style="max-width:280px;">
+      <button class="btn btn-icon card-wishlist-btn" id="sticky-wishlist-btn" data-brand="ROUTINE" data-name="피그먼트 오버핏 코튼 셔츠" style="position:static; width:44px; height:auto; background:transparent; font-size:16px;" onclick="event.preventDefault(); window.toggleCardWishlist(this);"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button>
+      <button class="btn" data-action="add-to-cart">장바구니</button>
+      <button class="btn btn-primary">바로 구매</button>
+    </div>
+  </div>
+</div>
+
+<button class="coupon-fab" id="coupon-fab" title="오늘의 쿠폰 뽑기">🎁<span>쿠폰</span></button>
+
+<div class="coupon-modal-overlay" id="coupon-modal-overlay">
+  <div class="coupon-modal">
+    <button class="coupon-modal-close" id="coupon-modal-close"><i class="ti ti-x"></i></button>
+    <p class="coupon-modal-title">오늘의 쿠폰 룰렛</p>
+    <p class="coupon-modal-sub">하루에 한 번, 랜덤 쿠폰에 도전해보세요</p>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer"></div>
+      <div class="wheel-svg-container" id="wheel-svg-container"><svg viewBox="0 0 300 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><path d="M150,150 L150.0,10.0 A140,140 0 0,1 271.2,80.0 Z" fill="#0c447c" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L271.2,80.0 A140,140 0 0,1 271.2,220.0 Z" fill="#215d92" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L271.2,220.0 A140,140 0 0,1 150.0,290.0 Z" fill="#3170a5" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L150.0,290.0 A140,140 0 0,1 28.8,220.0 Z" fill="#4384b8" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L28.8,220.0 A140,140 0 0,1 28.8,80.0 Z" fill="#5698c9" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L28.8,80.0 A140,140 0 0,1 150.0,10.0 Z" fill="#6babd8" stroke="#ffffff" stroke-width="2"/><text x="196.0" y="70.3" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(30.0 196.0 70.3)">5% 할인</text><text x="242.0" y="150.0" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(90.0 242.0 150.0)">꽝 😅</text><text x="196.0" y="229.7" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(150.0 196.0 229.7)">10% 할인</text><text x="104.0" y="229.7" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(210.0 104.0 229.7)">무료배송</text><text x="58.0" y="150.0" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(270.0 58.0 150.0)">15% 할인</text><text x="104.0" y="70.3" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(330.0 104.0 70.3)">3천원 쿠폰</text><circle cx="150" cy="150" r="20" fill="#ffffff" stroke="#0c447c" stroke-width="3"/></svg></div>
+    </div>
+    <button class="btn btn-primary" id="wheel-spin-btn" style="width:100%; margin-top:18px; padding:13px;">룰렛 돌리기</button>
+    <p class="coupon-result" id="coupon-result"></p>
+  </div>
+</div>
+
+<div class="coupon-modal-overlay" id="quickview-overlay">
+  <div class="coupon-modal" style="width:380px;">
+    <button class="coupon-modal-close" id="quickview-close"><i class="ti ti-x"></i></button>
+    <div class="illustration" id="quickview-illustration" style="width:100%; aspect-ratio:3/4; background:var(--bg-alt); border-radius:14px; margin-bottom:16px;"></div>
+    <p id="quickview-brand" style="font-size:12px; color:var(--navy); font-weight:700; margin:0 0 4px; text-align:left;"></p>
+    <p id="quickview-name" style="font-size:16px; font-weight:700; margin:0 0 8px; text-align:left;"></p>
+    <p id="quickview-price" style="font-size:18px; font-weight:800; margin:0 0 18px; text-align:left;"></p>
+    <div style="display:flex; gap:8px;">
+      <a href="product.html" class="btn" id="quickview-detail-link" style="flex:1; text-decoration:none; text-align:center;">상세보기</a>
+      <button class="btn btn-primary" id="quickview-add-cart" style="flex:1;">장바구니 담기</button>
+    </div>
+  </div>
+</div>
+
+<div class="coupon-modal-overlay" id="sizeguide-overlay">
+  <div class="coupon-modal" style="width:400px; text-align:left;">
+    <button class="coupon-modal-close" id="sizeguide-close"><i class="ti ti-x"></i></button>
+    <p class="coupon-modal-title" style="text-align:left;">사이즈 가이드</p>
+    <p class="coupon-modal-sub" style="text-align:left;">단위: cm, 제품 촬영 및 측정 방법에 따라 1~3cm 오차가 있을 수 있어요.</p>
+    <table class="size-guide-table">
+      <thead>
+        <tr><th>사이즈</th><th>어깨너비</th><th>가슴단면</th><th>총장</th><th>소매길이</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S</td><td>45</td><td>52</td><td>68</td><td>60</td></tr>
+        <tr><td>M</td><td>47</td><td>55</td><td>70</td><td>62</td></tr>
+        <tr><td>L</td><td>49</td><td>58</td><td>72</td><td>64</td></tr>
+        <tr><td>XL</td><td>51</td><td>61</td><td>74</td><td>66</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--text-secondary); margin:14px 0 0;">평소 M 사이즈를 입으신다면 이 상품도 M을 추천드려요. 넉넉하게 입고 싶다면 한 치수 위를 골라보세요.</p>
+  </div>
+</div>
+
+<script>
+// 전역 토스트 알림
+window.showToast = window.showToast || function (message) {
+  var toast = document.createElement('div');
+  toast.className = 'easter-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  requestAnimationFrame(function () { toast.classList.add('show'); });
+  setTimeout(function () {
+    toast.classList.remove('show');
+    setTimeout(function () { toast.remove(); }, 400);
+  }, 2600);
+};
+
+// 옵션 선택 (사이즈/컬러 스와치) 공통 처리
+document.querySelectorAll('.size-chip:not(.disabled)').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.option-row');
+    if (group) {
+      group.querySelectorAll('.size-chip').forEach(function (s) {
+        s.classList.remove('selected');
+      });
+      el.classList.add('selected');
+    } else {
+      el.classList.toggle('selected');
+    }
+  });
+});
+
+document.querySelectorAll('.swatch').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.option-row');
+    group.querySelectorAll('.swatch').forEach(function (s) {
+      s.classList.remove('selected');
+    });
+    el.classList.add('selected');
+  });
+});
+
+// 수량 조절 (버튼 + 직접 입력 둘 다 지원)
+document.querySelectorAll('.qty-control').forEach(function (control) {
+  var display = control.querySelector('.qty-value');
+  var minus = control.querySelector('.qty-minus');
+  var plus = control.querySelector('.qty-plus');
+
+  function getCount() {
+    return parseInt(display.value, 10) || 1;
+  }
+  function setCount(n) {
+    n = Math.max(1, Math.min(99, n));
+    display.value = n;
+    display.dispatchEvent(new Event('change'));
+  }
+
+  minus.addEventListener('click', function () {
+    setCount(getCount() - 1);
+  });
+  plus.addEventListener('click', function () {
+    setCount(getCount() + 1);
+  });
+  display.addEventListener('change', function () {
+    var n = parseInt(display.value, 10);
+    if (isNaN(n) || n < 1) n = 1;
+    if (n > 99) n = 99;
+    display.value = n;
+  });
+  display.addEventListener('input', function () {
+    display.value = display.value.replace(/[^0-9]/g, '');
+  });
+});
+
+// 필터 칩 제거
+document.querySelectorAll('.chip.removable button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.closest('.chip').remove();
+  });
+});
+
+// 장바구니 담기 버튼 - 토스트 알림
+document.querySelectorAll('[data-action="add-to-cart"]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var qtyEl = document.querySelector('.qty-value');
+    var qty = qtyEl ? (parseInt(qtyEl.value, 10) || 1) : 1;
+    document.querySelectorAll('.cart-count').forEach(function (badge) {
+      var current = parseInt(badge.textContent, 10) || 0;
+      badge.textContent = current + qty;
+    });
+    window.showToast('장바구니에 담았어요 (' + qty + '개) 🛒');
+  });
+});
+
+// 장바구니 개별 삭제
+document.querySelectorAll('.cart-item .remove-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.closest('.cart-item').remove();
+  });
+});
+
+// 찜(위시리스트) 목록 관리 - 이 페이지를 보는 동안만 유지되는 데모 상태
+(function () {
+  var wishlist = []; // { brand, name }
+  var navBtn = document.getElementById('nav-wishlist-btn');
+  var badge = document.getElementById('wishlist-count');
+  var panel = document.getElementById('wishlist-panel');
+  var listEl = document.getElementById('wishlist-list');
+  var emptyEl = document.getElementById('wishlist-empty');
+
+  function findIndex(brand, name) {
+    for (var i = 0; i < wishlist.length; i++) {
+      if (wishlist[i].brand === brand && wishlist[i].name === name) return i;
+    }
+    return -1;
+  }
+
+  function renderPanel() {
+    if (!listEl) return;
+    listEl.innerHTML = '';
+    if (wishlist.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      return;
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+    wishlist.forEach(function (item, idx) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + item.brand + ' · ' + item.name + '</span><button style="border:none;background:none;color:var(--text-muted);cursor:pointer;" data-idx="' + idx + '">&times;</button>';
+      listEl.appendChild(li);
+    });
+    listEl.querySelectorAll('button[data-idx]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var idx = parseInt(btn.dataset.idx, 10);
+        var item = wishlist[idx];
+        wishlist.splice(idx, 1);
+        syncCardButtons(item.brand, item.name, false);
+        updateBadge();
+        renderPanel();
+      });
+    });
+  }
+
+  function updateBadge() {
+    if (!badge) return;
+    if (wishlist.length > 0) {
+      badge.style.display = 'flex';
+      badge.textContent = wishlist.length;
+      if (navBtn) navBtn.classList.add('nav-icon-active');
+    } else {
+      badge.style.display = 'none';
+      if (navBtn) navBtn.classList.remove('nav-icon-active');
+    }
+  }
+
+  function heartBurst(btn) {
+    var rect = btn.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    for (var i = 0; i < 6; i++) {
+      var p = document.createElement('span');
+      p.textContent = '♥';
+      p.style.cssText = 'position:fixed; left:' + cx + 'px; top:' + cy + 'px; color:var(--heart-red); font-size:' + (10 + Math.random()*8) + 'px; pointer-events:none; z-index:999; transition: transform 0.6s ease, opacity 0.6s ease;';
+      document.body.appendChild(p);
+      var angle = (Math.PI * 2 * i) / 6 + Math.random() * 0.5;
+      var dist = 30 + Math.random() * 20;
+      requestAnimationFrame(function (el, ang, d) {
+        return function () {
+          el.style.transform = 'translate(' + Math.cos(ang) * d + 'px,' + (Math.sin(ang) * d - 20) + 'px) scale(0.4)';
+          el.style.opacity = '0';
+        };
+      }(p, angle, dist));
+      setTimeout(function (el) { return function () { el.remove(); }; }(p), 650);
+    }
+  }
+
+  function setHeartIcon(btn, active) {
+    var wasActive = btn.classList.contains('wishlist-active');
+    btn.classList.toggle('wishlist-active', active);
+    if (active && !wasActive) {
+      heartBurst(btn);
+    }
+  }
+
+  function syncCardButtons(brand, name, active) {
+    document.querySelectorAll('.card-wishlist-btn').forEach(function (btn) {
+      if (btn.dataset.brand === brand && btn.dataset.name === name) {
+        setHeartIcon(btn, active);
+      }
+    });
+    var wishlistBtn = document.getElementById('wishlist-btn');
+    if (wishlistBtn && wishlistBtn.dataset.brand === brand && wishlistBtn.dataset.name === name) {
+      setHeartIcon(wishlistBtn, active);
+    }
+  }
+
+  window.toggleCardWishlist = function (btn) {
+    var brand = btn.dataset.brand;
+    var name = btn.dataset.name;
+    var idx = findIndex(brand, name);
+    var nowActive;
+    if (idx >= 0) {
+      wishlist.splice(idx, 1);
+      nowActive = false;
+    } else {
+      wishlist.push({ brand: brand, name: name });
+      nowActive = true;
+    }
+    syncCardButtons(brand, name, nowActive);
+    updateBadge();
+    renderPanel();
+  };
+
+  if (navBtn) {
+    navBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (panel) panel.classList.toggle('open');
+    });
+  }
+
+  var clearBtn = document.getElementById('wishlist-clear-btn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      wishlist.slice().forEach(function (item) {
+        syncCardButtons(item.brand, item.name, false);
+      });
+      wishlist = [];
+      updateBadge();
+      renderPanel();
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (panel && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== navBtn && !navBtn.contains(e.target)) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // 상세페이지 전용 찜 버튼과 연동
+  var detailWishlistBtn = document.getElementById('wishlist-btn');
+  if (detailWishlistBtn && detailWishlistBtn.dataset.brand) {
+    detailWishlistBtn.addEventListener('click', function () {
+      window.toggleCardWishlist(detailWishlistBtn);
+    });
+  }
+
+  updateBadge();
+  renderPanel();
+})();
+
+// 카테고리 사이드바 클릭 시 active 표시
+document.querySelectorAll('.filter-group .cat-item').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.filter-group');
+    group.querySelectorAll('.cat-item').forEach(function (s) {
+      s.classList.remove('active');
+    });
+    el.classList.add('active');
+  });
+});
+
+// 상세페이지: 갤러리 썸네일 클릭 시 메인 이미지(일러스트) 교체
+var PRODUCT_VIEW_SVGS = {"shirt": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    \n    <path d=\"M95 60 L120 85 L145 60\" fill=\"none\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.6\"/>\n    <circle cx=\"120\" cy=\"110\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"170\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"200\" r=\"2.5\" fill=\"var(--navy)\"/>\n    </svg>", "shirt_folded": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n        <rect x=\"55\" y=\"70\" width=\"130\" height=\"150\" rx=\"10\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n        <rect x=\"70\" y=\"55\" width=\"100\" height=\"20\" rx=\"6\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n        <line x1=\"55\" y1=\"120\" x2=\"185\" y2=\"120\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.5\"/>\n        <line x1=\"55\" y1=\"170\" x2=\"185\" y2=\"170\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.5\"/>\n        </svg>", "shirt_back": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.4\"/></svg>", "shirt_stripe": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    \n    <path d=\"M95 60 L120 85 L145 60\" fill=\"none\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.6\"/>\n    <circle cx=\"120\" cy=\"110\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"170\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"200\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <line x1=\"82\" y1=\"100\" x2=\"158\" y2=\"100\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"120\" x2=\"158\" y2=\"120\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"140\" x2=\"158\" y2=\"140\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"160\" x2=\"158\" y2=\"160\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"180\" x2=\"158\" y2=\"180\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"200\" x2=\"158\" y2=\"200\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/></svg>"};
+document.querySelectorAll('.gallery-thumb-item').forEach(function (thumb) {
+  thumb.addEventListener('click', function () {
+    document.querySelectorAll('.gallery-thumb-item').forEach(function (t) {
+      t.classList.remove('active');
+    });
+    thumb.classList.add('active');
+    var mainImg = document.getElementById('main-product-image');
+    var view = thumb.dataset.view;
+    if (mainImg && PRODUCT_VIEW_SVGS[view]) {
+      mainImg.innerHTML = PRODUCT_VIEW_SVGS[view];
+    }
+  });
+});
+
+
+// 스크롤 시 하단 고정 구매바 표시
+(function () {
+  var buybar = document.getElementById('sticky-buybar');
+  var trigger = document.getElementById('main-action-row');
+  if (!buybar || !trigger) return;
+
+  function onScroll() {
+    var rect = trigger.getBoundingClientRect();
+    if (rect.bottom < 0) {
+      buybar.classList.add('visible');
+    } else {
+      buybar.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+
+
+// 스크롤 시 헤더 그림자 + 요소 등장 애니메이션
+(function () {
+  var nav = document.querySelector('.nav');
+  function onNavScroll() {
+    if (!nav) return;
+    if (window.scrollY > 8) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', onNavScroll);
+  onNavScroll();
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in-view'); });
+  }
+})();
+
+
+// 다크모드 토글
+(function () {
+  var btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+  var icon = btn.querySelector('i');
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (icon) {
+      icon.classList.toggle('ti-moon', theme !== 'dark');
+      icon.classList.toggle('ti-sun', theme === 'dark');
+    }
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+
+// 실시간 인기 표시(소셜 프루프) - 숫자가 살짝씩 흔들리며 살아있는 느낌을 줌
+(function () {
+  var viewerEl = document.getElementById('live-viewers');
+  if (!viewerEl) return;
+  var count = 12;
+  setInterval(function () {
+    var delta = Math.floor(Math.random() * 5) - 2; // -2 ~ +2
+    count = Math.max(6, Math.min(48, count + delta));
+    viewerEl.innerHTML = '<i class="ti ti-eye" style="margin-right:3px;"></i>지금 ' + count + '명이 보는 중';
+  }, 3500);
+})();
+
+
+// 전역 컨페티
+window.spawnConfetti = window.spawnConfetti || function () {
+  var colors = ['#0c447c', '#3d8bd4', '#e0245e', '#f2b705', '#1a8a4a'];
+  for (var i = 0; i < 28; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (1.6 + Math.random() * 1.2) + 's';
+    piece.style.animationDelay = (Math.random() * 0.3) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(piece);
+    (function (el) {
+      el.addEventListener('animationend', function () { el.remove(); });
+    })(piece);
+  }
+};
+
+// 쿠폰 룰렛
+(function () {
+  var fab = document.getElementById('coupon-fab');
+  var overlay = document.getElementById('coupon-modal-overlay');
+  var closeBtn = document.getElementById('coupon-modal-close');
+  var spinBtn = document.getElementById('wheel-spin-btn');
+  var wheel = document.getElementById('wheel-svg-container');
+  var resultEl = document.getElementById('coupon-result');
+  if (!fab || !overlay) return;
+
+  var SEGMENTS = ['5% 할인', '꽝 😅', '10% 할인', '무료배송', '15% 할인', '3천원 쿠폰'];
+  var SEG_ANGLE = 360 / SEGMENTS.length;
+  var spun = false;
+  var currentRotation = 0;
+
+  fab.addEventListener('click', function () {
+    overlay.classList.add('open');
+  });
+  closeBtn.addEventListener('click', function () {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+
+  spinBtn.addEventListener('click', function () {
+    if (spun) return;
+    spun = true;
+    spinBtn.disabled = true;
+    spinBtn.textContent = '두근두근...';
+    resultEl.textContent = '';
+
+    var index = Math.floor(Math.random() * SEGMENTS.length);
+    var jitter = (Math.random() * (SEG_ANGLE - 10)) - (SEG_ANGLE - 10) / 2;
+    var target = 1800 - (index + 0.5) * SEG_ANGLE + jitter;
+    currentRotation += target;
+    wheel.style.transform = 'rotate(' + currentRotation + 'deg)';
+
+    setTimeout(function () {
+      var result = SEGMENTS[index];
+      resultEl.textContent = result === '꽝 😅' ? '앗, 다음 기회에 다시 도전해보세요!' : '🎉 ' + result + ' 당첨! (데모 화면입니다)';
+      spinBtn.textContent = '오늘은 다 쓰셨어요';
+      if (result !== '꽝 😅') {
+        window.spawnConfetti();
+      }
+    }, 3600);
+  });
+})();
+
+// 코나미 코드 이스터에그
+(function () {
+  var sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  var progress = 0;
+
+  document.addEventListener('keydown', function (e) {
+    var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (key === sequence[progress]) {
+      progress += 1;
+      if (progress === sequence.length) {
+        progress = 0;
+        window.spawnConfetti();
+        window.showToast('\ud83c\udfae 이스터에그 발견! 숨겨진 쿠폰코드: STYLEHUB2026');
+      }
+    } else {
+      progress = (key === sequence[0]) ? 1 : 0;
+    }
+  });
+})();
+
+
+// 뉴스레터 구독 폼 (데모)
+(function () {
+  var form = document.getElementById('newsletter-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.showToast('구독 완료! (데모 화면입니다)');
+    form.reset();
+  });
+})();
+
+
+// 페이지 전환 페이드 효과
+(function () {
+  var pages = ['index.html', 'product.html', 'category.html', 'search.html', 'cart.html'];
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+    var isInternalPage = pages.some(function (p) { return href === p || href.endsWith('/' + p); });
+    if (!isInternalPage) return;
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
+
+    e.preventDefault();
+    document.body.classList.add('page-fade-out');
+    setTimeout(function () {
+      window.location.href = href;
+    }, 200);
+  });
+})();
+
+
+// 빠른보기(퀵뷰) 모달
+window.openQuickView = function (btn) {
+  var card = btn.closest('.card');
+  if (!card) return;
+  var illo = card.querySelector('.illustration');
+  var brand = card.querySelector('.brand');
+  var name = card.querySelector('.name');
+  var price = card.querySelector('.price');
+  var illoBox = document.getElementById('quickview-illustration');
+  if (illoBox) illoBox.innerHTML = illo ? illo.innerHTML : '';
+  var brandEl = document.getElementById('quickview-brand');
+  var nameEl = document.getElementById('quickview-name');
+  var priceEl = document.getElementById('quickview-price');
+  if (brandEl) brandEl.textContent = brand ? brand.textContent : '';
+  if (nameEl) nameEl.textContent = name ? name.textContent : '';
+  if (priceEl) priceEl.textContent = price ? price.textContent : '';
+  var overlay = document.getElementById('quickview-overlay');
+  if (overlay) overlay.classList.add('open');
+};
+
+(function () {
+  var overlay = document.getElementById('quickview-overlay');
+  if (!overlay) return;
+  var closeBtn = document.getElementById('quickview-close');
+  var addBtn = document.getElementById('quickview-add-cart');
+
+  closeBtn.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  addBtn.addEventListener('click', function () {
+    document.querySelectorAll('.cart-count').forEach(function (badge) {
+      var current = parseInt(badge.textContent, 10) || 0;
+      badge.textContent = current + 1;
+    });
+    window.showToast('장바구니에 담았어요 🛒');
+    overlay.classList.remove('open');
+  });
+})();
+
+
+// 상세페이지 탭 전환
+(function () {
+  var tabs = document.querySelectorAll('.tabs span[data-tab]');
+  if (!tabs.length) return;
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach(function (panel) {
+        panel.style.display = 'none';
+      });
+      var target = document.getElementById('tab-' + tab.dataset.tab);
+      if (target) target.style.display = 'block';
+    });
+  });
+})();
+
+
+// 사이즈 가이드 모달
+(function () {
+  var btn = document.getElementById('size-guide-btn');
+  var overlay = document.getElementById('sizeguide-overlay');
+  var closeBtn = document.getElementById('sizeguide-close');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function () { overlay.classList.add('open'); });
+  closeBtn.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+})();
+
+
+// 키보드 단축키: Esc로 모달/패널 닫기, '/' 로 검색 포커스
+(function () {
+  document.addEventListener('keydown', function (e) {
+    var active = document.activeElement;
+    var isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA');
+
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.coupon-modal-overlay.open').forEach(function (el) {
+        el.classList.remove('open');
+      });
+      var wishlistPanel = document.getElementById('wishlist-panel');
+      if (wishlistPanel) wishlistPanel.classList.remove('open');
+      return;
+    }
+
+    if (e.key === '/' && !isTyping) {
+      var searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      } else {
+        e.preventDefault();
+        window.location.href = 'search.html';
+      }
+    }
+  });
+})();
+
+</script>
+</body>
+</html>

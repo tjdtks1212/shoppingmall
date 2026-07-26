@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STYLEHUB - 여러 브랜드, 한곳에서</title>
+<style>
+:root {
+  --navy: #0c447c;
+  --navy-dark: #042c53;
+  --navy-light: #e6f1fb;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-muted: #9b9b96;
+  --border: #e5e5e2;
+  --border-strong: #c9c9c4;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+  --radius: 10px;
+  --max-width: 1160px;
+  --heart-red: #e0245e;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="dark"] {
+  --navy: #3d8bd4;
+  --navy-dark: #2a6bab;
+  --navy-light: rgba(61, 139, 212, 0.18);
+  --text-primary: #f0f2f5;
+  --text-secondary: #b7bec7;
+  --text-muted: #7c848d;
+  --border: #2b313a;
+  --border-strong: #3c434d;
+  --bg: #12161b;
+  --bg-alt: #1a1f26;
+  --nav-bg: rgba(18, 22, 27, 0.75);
+  --badge-bg: rgba(26, 31, 38, 0.85);
+}
+
+:root[data-theme="dark"] body {
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease, opacity 0.22s ease;
+  animation: page-fade-in 0.35s ease;
+}
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body.page-fade-out {
+  opacity: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* utility bar */
+.util-bar {
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.util-bar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+}
+.util-bar .util-links {
+  display: flex;
+  gap: 16px;
+}
+
+/* main nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.25s ease, background 0.3s ease;
+}
+.nav.scrolled {
+  box-shadow: 0 4px 20px rgba(12, 68, 124, 0.08);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.nav .menu {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+.nav .menu a {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+.nav .menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--navy);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav .menu a:hover {
+  color: var(--navy);
+}
+.nav .menu a:hover::after,
+.nav .menu a.active::after {
+  transform: scaleX(1);
+}
+.nav .menu a.active {
+  font-weight: 700;
+  color: var(--navy);
+}
+.nav .icons {
+  display: flex;
+  gap: 18px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+.nav .icons a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav .icons a:hover {
+  color: var(--navy);
+}
+.nav .icons a.nav-icon-active {
+  color: var(--heart-red);
+}
+.nav .icons a.nav-icon-active .heart-icon {
+  fill: currentColor;
+  animation: heart-pop 0.35s ease;
+}
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* breadcrumb */
+.breadcrumb {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 20px 0 8px;
+}
+
+/* hero */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  padding: 88px 0;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 10%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 70%);
+}
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+.hero .eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--navy-light);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0 0 22px;
+  line-height: 1.25;
+}
+.hero h1 .accent-text {
+  background: linear-gradient(90deg, #ffffff 0%, #bcd9f2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .btn-primary {
+  background: #fff;
+  color: var(--navy);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* brand chip strip */
+.brand-strip {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.brand-strip h3,
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+.chip-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+.chip:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+.chip.removable {
+  background: var(--bg-alt);
+}
+.chip button {
+  border: none;
+  background: none;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 0;
+}
+
+/* section */
+.section {
+  padding: 40px 0;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-head .more {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* product grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.outfit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.outfit-card {
+  background: var(--bg-alt);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.outfit-card .illustration {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+}
+.outfit-card .illustration-svg {
+  width: 58%;
+}
+.outfit-card .outfit-slot-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 8px 0 4px;
+}
+.outfit-card .outfit-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+.outfit-card .outfit-item-price {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+#outfit-shuffle-btn.spinning i {
+  animation: spin-icon 0.5s ease;
+}
+@keyframes spin-icon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.card {
+  display: block;
+}
+.card {
+  transition: transform 0.2s ease;
+}
+.card .thumb {
+  background: var(--bg-alt);
+  border-radius: 14px;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(12, 68, 124, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card:hover .thumb {
+  box-shadow: 0 16px 28px rgba(12, 68, 124, 0.16);
+  transform: translateY(-4px);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .thumb img {
+  transform: scale(1.06);
+}
+.illustration {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+.card:hover .illustration {
+  transform: scale(1.06);
+}
+.illustration-svg {
+  width: 64%;
+  height: auto;
+}
+.illustration-small .illustration-svg {
+  width: 78%;
+}
+
+.card .name {
+  transition: color 0.2s ease;
+}
+.card:hover .name {
+  color: var(--navy);
+}
+.card .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--badge-bg);
+  backdrop-filter: blur(4px);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.card-wishlist-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.card-wishlist-btn:hover {
+  transform: scale(1.1);
+  color: var(--navy);
+}
+.rank-number {
+  position: absolute;
+  bottom: 6px;
+  left: 10px;
+  font-size: 34px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+.card-wishlist-btn.wishlist-active {
+  color: var(--heart-red);
+}
+.card-wishlist-btn.wishlist-active i {
+  animation: heart-pop 0.35s ease;
+}
+.wishlist-active .heart-icon {
+  fill: currentColor;
+}
+.heart-icon {
+  animation: none;
+}
+.wishlist-active .heart-icon {
+  animation: heart-pop 0.35s ease;
+}
+.wishlist-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 260px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  padding: 14px;
+  z-index: 50;
+  display: none;
+}
+.wishlist-panel.open {
+  display: block;
+}
+.wishlist-panel h5 {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+.wishlist-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.wishlist-panel li {
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.wishlist-panel li:last-child {
+  border-bottom: none;
+}
+.wishlist-panel .empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+.nav .icons a {
+  position: relative;
+}
+.card .brand {
+  font-size: 11px;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 10px 0 2px;
+}
+.card .name {
+  font-size: 13px;
+  margin: 0 0 2px;
+  color: var(--text-primary);
+}
+.card .price {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* buttons */
+.btn {
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+  background: var(--navy-light);
+}
+.btn-primary {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 16px rgba(12, 68, 124, 0.24);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--navy-dark);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(12, 68, 124, 0.32);
+}
+.btn-icon {
+  width: 44px;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* footer */
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  padding: 48px 0 0;
+  margin-top: 48px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 36px;
+}
+.footer-col-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 14px;
+}
+.footer-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
+}
+.footer-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+.footer-phone {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.footer-link {
+  font-size: 12px;
+  margin: 0 0 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: var(--navy);
+}
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+.footer-social a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+.footer-social a:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.footer-newsletter {
+  display: flex;
+  gap: 8px;
+}
+.footer-newsletter input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: inherit;
+}
+.footer-newsletter button {
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.footer-legal {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+/* layout helpers */
+.layout-2col {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 28px;
+}
+.layout-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+}
+.layout-cart {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+}
+
+/* filter sidebar */
+.filter-group {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+.filter-group h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.filter-group .cat-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.filter-group .cat-item.active {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* toolbar / sort */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+select {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* tabs */
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.tabs span {
+  padding-bottom: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.tabs span.active {
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--text-primary);
+}
+
+/* search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 10px 18px;
+  max-width: 480px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+}
+
+/* pdp specific */
+.pdp-gallery-thumb {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.pdp-gallery-thumb div {
+  background: var(--bg-alt);
+  border-radius: 6px;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+}
+.pdp-gallery-thumb div.active {
+  border: 2px solid var(--navy);
+}
+.pdp-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.pdp-price {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.pdp-rating {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.option-row {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+.option-row h5 {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  font-weight: 400;
+}
+.swatch-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.swatch.selected {
+  border: 2px solid var(--navy);
+}
+.size-row {
+  display: flex;
+  gap: 8px;
+}
+.size-chip {
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.size-chip.selected {
+  border: 2px solid var(--navy);
+  font-weight: 700;
+}
+.size-chip.disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+}
+.qty-control button {
+  border: none;
+  background: none;
+  font-size: 14px;
+}
+.action-row {
+  display: flex;
+  gap: 10px;
+}
+.action-row .btn-primary {
+  flex: 2;
+  padding: 14px;
+}
+.action-row .btn {
+  flex: 1;
+}
+
+/* cart specific */
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.cart-item .thumb {
+  width: 80px;
+  height: 100px;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+.cart-item .info {
+  flex: 1;
+}
+.cart-item .price {
+  width: 90px;
+  text-align: right;
+}
+.summary-card {
+  background: var(--bg-alt);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.summary-card h4 {
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.summary-row.total {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 860px) {
+  .nav .menu {
+    display: none;
+  }
+  .nav .wrap {
+    height: 58px;
+  }
+  .nav .logo {
+    font-size: 19px;
+  }
+  .util-bar {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .layout-2col,
+  .layout-detail,
+  .layout-cart {
+    grid-template-columns: 1fr;
+  }
+  .layout-2col > div:first-child {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .layout-2col .filter-group {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-legal {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .outfit-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 56px 0;
+  }
+  .hero h1 {
+    font-size: 28px;
+  }
+  .coupon-fab span {
+    display: none;
+  }
+  .coupon-fab {
+    padding: 14px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .wheel-wrap {
+    width: 180px;
+    height: 180px;
+  }
+  .coupon-modal,
+  .sizeguide-overlay .coupon-modal {
+    width: 92vw;
+  }
+  .sticky-buybar-info p {
+    font-size: 12px;
+  }
+  .action-row {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid,
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .nav .icons {
+    gap: 10px;
+    font-size: 16px;
+  }
+  .wrap {
+    padding: 0 16px;
+  }
+}
+
+
+/* 쿠폰 룰렛 */
+.coupon-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 150;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(12, 68, 124, 0.32);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  animation: fab-float 2.6s ease-in-out infinite;
+}
+.coupon-fab span {
+  font-size: 13px;
+  font-weight: 700;
+}
+.coupon-fab:hover {
+  transform: scale(1.06);
+}
+@keyframes fab-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.coupon-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-modal-overlay.open {
+  display: flex;
+}
+.coupon-modal {
+  position: relative;
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  width: 340px;
+  max-width: 90vw;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+.coupon-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.coupon-modal-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.coupon-modal-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+.wheel-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid var(--heart-red);
+  z-index: 2;
+}
+.wheel-svg-container {
+  width: 100%;
+  height: 100%;
+  transition: transform 3.5s cubic-bezier(0.15, 0.7, 0.2, 1);
+}
+.coupon-result {
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 20px;
+  margin: 14px 0 0;
+  color: var(--navy);
+}
+
+/* 컨페티 (전역) */
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  width: 8px;
+  height: 14px;
+  z-index: 999;
+  pointer-events: none;
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.35, 0, 0.65, 1);
+  animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0.2; }
+}
+
+/* 이스터에그 토스트 */
+.easter-toast {
+  position: fixed;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--text-primary);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.easter-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 빠른보기 */
+.quick-view-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(20, 24, 30, 0.82);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.card:hover .quick-view-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css" />
+</head>
+<body>
+
+<div class="util-bar">
+  <div class="wrap">
+    <span>무료배송 5만원 이상 구매시</span>
+    <div class="util-links">
+      <a href="#">로그인</a>
+      <a href="#">회원가입</a>
+      <a href="#">고객센터</a>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">STYLEHUB</a>
+    <div class="menu">
+      <a href="category.html" class="active">BEST</a>
+      <a href="category.html">NEW</a>
+      <a href="category.html">브랜드관</a>
+      <a href="category.html">아우터</a>
+      <a href="category.html">상의</a>
+      <a href="category.html">하의</a>
+      <a href="category.html">ACC</a>
+    </div>
+    <div class="icons">
+      <a href="#" id="theme-toggle-btn" title="다크모드 전환"><i class="ti ti-moon"></i></a>
+      <a href="search.html"><i class="ti ti-search"></i></a>
+      <span style="position: relative; display: inline-flex;">
+        <a href="#" id="nav-wishlist-btn"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg><span class="cart-count" id="wishlist-count" style="display:none;">0</span></a>
+        <div class="wishlist-panel" id="wishlist-panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+            <h5 style="margin:0;">찜한 상품 (이 페이지 기준)</h5>
+            <button id="wishlist-clear-btn" style="border:none; background:none; font-size:11px; color:var(--text-muted); cursor:pointer;">전체 삭제</button>
+          </div>
+          <ul id="wishlist-list"></ul>
+          <p class="empty" id="wishlist-empty">💔 아직 찜한 상품이 없어요.</p>
+        </div>
+      </span>
+      <a href="cart.html"><i class="ti ti-shopping-bag"></i><span class="cart-count">3</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">100+ BRANDS IN ONE PLACE</p>
+    <h1><span class="accent-text">여러 브랜드,</span> 한곳에서</h1>
+    <button class="btn btn-primary">브랜드 둘러보기</button>
+  </div>
+</div>
+
+<div class="reveal brand-strip">
+  <div class="wrap">
+    <h3>인기 브랜드</h3>
+    <div class="chip-row">
+      <span class="chip">ROUTINE</span>
+      <span class="chip">BASIC LAB</span>
+      <span class="chip">GRID WORKS</span>
+      <span class="chip">DAILY ST.</span>
+    </div>
+  </div>
+</div>
+
+<div class="reveal section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-title">BEST ITEM</span>
+      <a href="category.html" class="more">더보기 &gt;</a>
+    </div>
+    <div class="grid">
+
+      <a href="product.html" class="card">
+        <div class="thumb"><button class="quick-view-btn" onclick="event.preventDefault(); event.stopPropagation(); window.openQuickView(this);"><i class="ti ti-eye"></i> 빠른보기</button><span class="rank-number">1</span><div class="illustration" role="img" aria-label="피그먼트 오버핏 코튼 셔츠"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    
+    <path d="M95 60 L120 85 L145 60" fill="none" stroke="var(--navy)"/>
+    <line x1="120" y1="85" x2="120" y2="225" stroke="var(--navy)" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="110" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="140" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="170" r="2.5" fill="var(--navy)"/>
+    <circle cx="120" cy="200" r="2.5" fill="var(--navy)"/>
+    </svg></div><span class="badge">BEST</span><button class="card-wishlist-btn" data-brand="ROUTINE" data-name="피그먼트 오버핏 코튼 셔츠" onclick="event.preventDefault(); window.toggleCardWishlist(this);"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button></div>
+        <p class="brand">ROUTINE</p>
+        <p class="name">피그먼트 오버핏 코튼 셔츠</p>
+        <p class="price">39,000원</p>
+      </a>
+
+      <a href="product.html" class="card">
+        <div class="thumb"><button class="quick-view-btn" onclick="event.preventDefault(); event.stopPropagation(); window.openQuickView(this);"><i class="ti ti-eye"></i> 빠른보기</button><span class="rank-number">2</span><div class="illustration" role="img" aria-label="에어라이트 윈드브레이커 집업"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M92 62 L68 84 L46 116 L68 136 L80 114 L80 224 Q80 234 92 234 L148 234 Q160 234 160 224 L160 114 L172 136 L194 116 L172 84 L148 62 L145 78 L120 90 L95 78 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <rect x="100" y="60" width="40" height="14" rx="4" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <line x1="120" y1="90" x2="120" y2="230" stroke="var(--navy)" stroke-width="3"/>
+    <path d="M113 100 L127 108 L113 116 L127 124 L113 132 L127 140 L113 148 L127 156 L113 164 L127 172 L113 180 L127 188 L113 196" fill="none" stroke="var(--navy)" stroke-width="1.5" opacity="0.6"/>
+    <rect x="62" y="120" width="20" height="14" rx="3" fill="none" stroke="var(--navy)" stroke-width="2.5"/>
+    <rect x="158" y="120" width="20" height="14" rx="3" fill="none" stroke="var(--navy)" stroke-width="2.5"/>
+    </svg></div><button class="card-wishlist-btn" data-brand="BASIC LAB" data-name="에어라이트 윈드브레이커 집업" onclick="event.preventDefault(); window.toggleCardWishlist(this);"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button></div>
+        <p class="brand">BASIC LAB</p>
+        <p class="name">에어라이트 윈드브레이커 집업</p>
+        <p class="price">59,000원</p>
+      </a>
+
+      <a href="product.html" class="card">
+        <div class="thumb"><button class="quick-view-btn" onclick="event.preventDefault(); event.stopPropagation(); window.openQuickView(this);"><i class="ti ti-eye"></i> 빠른보기</button><span class="rank-number">3</span><div class="illustration" role="img" aria-label="와이드 밴딩 팬츠"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M78 55 L162 55 L166 90 L120 90 L120 95 L162 95 L172 232 L146 232 L122 118 L118 118 L102 232 L76 232 L78 95 L120 95 L120 90 L74 90 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <line x1="120" y1="60" x2="120" y2="90" stroke="var(--navy)" stroke-width="2" opacity="0.5"/>
+    <line x1="90" y1="110" x2="90" y2="150" stroke="var(--navy)" stroke-width="1.5" opacity="0.3"/>
+    <line x1="150" y1="110" x2="150" y2="150" stroke="var(--navy)" stroke-width="1.5" opacity="0.3"/>
+    </svg></div><span class="badge">NEW</span><button class="card-wishlist-btn" data-brand="GRID WORKS" data-name="와이드 밴딩 팬츠" onclick="event.preventDefault(); window.toggleCardWishlist(this);"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button></div>
+        <p class="brand">GRID WORKS</p>
+        <p class="name">와이드 밴딩 팬츠</p>
+        <p class="price">45,000원</p>
+      </a>
+
+      <a href="product.html" class="card">
+        <div class="thumb"><button class="quick-view-btn" onclick="event.preventDefault(); event.stopPropagation(); window.openQuickView(this);"><i class="ti ti-eye"></i> 빠른보기</button><span class="rank-number">4</span><div class="illustration" role="img" aria-label="로우탑 캔버스 스니커즈"><svg viewBox="0 0 240 300" class="illustration-svg" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M40 210 Q40 190 62 186 L92 178 Q110 165 128 168 L150 178 Q168 176 182 186 Q200 190 200 208 Q200 218 190 218 L48 218 Q40 218 40 210 Z" fill="var(--navy-light)" stroke="var(--navy)"/>
+    <path d="M92 178 L100 150 L120 158 L128 168" fill="none" stroke="var(--navy)"/>
+    <line x1="98" y1="168" x2="112" y2="160" stroke="var(--navy)" stroke-width="2.5"/>
+    <line x1="104" y1="176" x2="118" y2="168" stroke="var(--navy)" stroke-width="2.5"/>
+    <line x1="110" y1="184" x2="124" y2="176" stroke="var(--navy)" stroke-width="2.5"/>
+    <path d="M40 210 Q120 202 200 208" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.5"/>
+    </svg></div><button class="card-wishlist-btn" data-brand="DAILY ST." data-name="로우탑 캔버스 스니커즈" onclick="event.preventDefault(); window.toggleCardWishlist(this);"><svg class="heart-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg></button></div>
+        <p class="brand">DAILY ST.</p>
+        <p class="name">로우탑 캔버스 스니커즈</p>
+        <p class="price">49,000원</p>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="section reveal" id="outfit-generator-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-title">오늘의 랜덤 코디 뽑기</span>
+      <button class="btn" id="outfit-shuffle-btn"><i class="ti ti-refresh"></i> 다시 뽑기</button>
+    </div>
+    <p id="outfit-caption" style="font-size:13px; color:var(--text-secondary); margin:0 0 18px;">버튼을 눌러서 오늘의 코디를 뽑아보세요.</p>
+    <div class="outfit-grid" id="outfit-grid"></div>
+    <p id="outfit-total" style="font-size:14px; font-weight:700; margin:20px 0 0; text-align:right; clear:both;"></p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <p class="footer-logo">STYLEHUB</p>
+      <p class="footer-desc">여러 브랜드를 한곳에서 만나는 편집샵이에요.<br/>매일 새로운 스타일을 만나보세요.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="#" title="X"><i class="ti ti-brand-x"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">고객센터</p>
+      <p class="footer-phone">1588-0000</p>
+      <p class="footer-desc">평일 09:00 - 18:00<br/>주말 및 공휴일 휴무</p>
+      <p class="footer-link">자주 묻는 질문</p>
+      <p class="footer-link">1:1 문의하기</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">뉴스레터 구독</p>
+      <p class="footer-desc">신상품과 할인 소식을 가장 먼저 받아보세요.</p>
+      <form class="footer-newsletter" id="newsletter-form">
+        <input type="email" placeholder="이메일 주소" required />
+        <button type="submit">구독</button>
+      </form>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <span>STYLEHUB | 사업자등록번호 000-00-00000 | 통신판매업신고 제0000호</span>
+    <span>© 2026 STYLEHUB</span>
+  </div>
+</div>
+
+<button class="coupon-fab" id="coupon-fab" title="오늘의 쿠폰 뽑기">🎁<span>쿠폰</span></button>
+
+<div class="coupon-modal-overlay" id="coupon-modal-overlay">
+  <div class="coupon-modal">
+    <button class="coupon-modal-close" id="coupon-modal-close"><i class="ti ti-x"></i></button>
+    <p class="coupon-modal-title">오늘의 쿠폰 룰렛</p>
+    <p class="coupon-modal-sub">하루에 한 번, 랜덤 쿠폰에 도전해보세요</p>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer"></div>
+      <div class="wheel-svg-container" id="wheel-svg-container"><svg viewBox="0 0 300 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><path d="M150,150 L150.0,10.0 A140,140 0 0,1 271.2,80.0 Z" fill="#0c447c" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L271.2,80.0 A140,140 0 0,1 271.2,220.0 Z" fill="#215d92" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L271.2,220.0 A140,140 0 0,1 150.0,290.0 Z" fill="#3170a5" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L150.0,290.0 A140,140 0 0,1 28.8,220.0 Z" fill="#4384b8" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L28.8,220.0 A140,140 0 0,1 28.8,80.0 Z" fill="#5698c9" stroke="#ffffff" stroke-width="2"/><path d="M150,150 L28.8,80.0 A140,140 0 0,1 150.0,10.0 Z" fill="#6babd8" stroke="#ffffff" stroke-width="2"/><text x="196.0" y="70.3" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(30.0 196.0 70.3)">5% 할인</text><text x="242.0" y="150.0" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(90.0 242.0 150.0)">꽝 😅</text><text x="196.0" y="229.7" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(150.0 196.0 229.7)">10% 할인</text><text x="104.0" y="229.7" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(210.0 104.0 229.7)">무료배송</text><text x="58.0" y="150.0" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(270.0 58.0 150.0)">15% 할인</text><text x="104.0" y="70.3" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" transform="rotate(330.0 104.0 70.3)">3천원 쿠폰</text><circle cx="150" cy="150" r="20" fill="#ffffff" stroke="#0c447c" stroke-width="3"/></svg></div>
+    </div>
+    <button class="btn btn-primary" id="wheel-spin-btn" style="width:100%; margin-top:18px; padding:13px;">룰렛 돌리기</button>
+    <p class="coupon-result" id="coupon-result"></p>
+  </div>
+</div>
+
+<div class="coupon-modal-overlay" id="quickview-overlay">
+  <div class="coupon-modal" style="width:380px;">
+    <button class="coupon-modal-close" id="quickview-close"><i class="ti ti-x"></i></button>
+    <div class="illustration" id="quickview-illustration" style="width:100%; aspect-ratio:3/4; background:var(--bg-alt); border-radius:14px; margin-bottom:16px;"></div>
+    <p id="quickview-brand" style="font-size:12px; color:var(--navy); font-weight:700; margin:0 0 4px; text-align:left;"></p>
+    <p id="quickview-name" style="font-size:16px; font-weight:700; margin:0 0 8px; text-align:left;"></p>
+    <p id="quickview-price" style="font-size:18px; font-weight:800; margin:0 0 18px; text-align:left;"></p>
+    <div style="display:flex; gap:8px;">
+      <a href="product.html" class="btn" id="quickview-detail-link" style="flex:1; text-decoration:none; text-align:center;">상세보기</a>
+      <button class="btn btn-primary" id="quickview-add-cart" style="flex:1;">장바구니 담기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 전역 토스트 알림
+window.showToast = window.showToast || function (message) {
+  var toast = document.createElement('div');
+  toast.className = 'easter-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  requestAnimationFrame(function () { toast.classList.add('show'); });
+  setTimeout(function () {
+    toast.classList.remove('show');
+    setTimeout(function () { toast.remove(); }, 400);
+  }, 2600);
+};
+
+// 옵션 선택 (사이즈/컬러 스와치) 공통 처리
+document.querySelectorAll('.size-chip:not(.disabled)').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.option-row');
+    if (group) {
+      group.querySelectorAll('.size-chip').forEach(function (s) {
+        s.classList.remove('selected');
+      });
+      el.classList.add('selected');
+    } else {
+      el.classList.toggle('selected');
+    }
+  });
+});
+
+document.querySelectorAll('.swatch').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.option-row');
+    group.querySelectorAll('.swatch').forEach(function (s) {
+      s.classList.remove('selected');
+    });
+    el.classList.add('selected');
+  });
+});
+
+// 수량 조절 (버튼 + 직접 입력 둘 다 지원)
+document.querySelectorAll('.qty-control').forEach(function (control) {
+  var display = control.querySelector('.qty-value');
+  var minus = control.querySelector('.qty-minus');
+  var plus = control.querySelector('.qty-plus');
+
+  function getCount() {
+    return parseInt(display.value, 10) || 1;
+  }
+  function setCount(n) {
+    n = Math.max(1, Math.min(99, n));
+    display.value = n;
+    display.dispatchEvent(new Event('change'));
+  }
+
+  minus.addEventListener('click', function () {
+    setCount(getCount() - 1);
+  });
+  plus.addEventListener('click', function () {
+    setCount(getCount() + 1);
+  });
+  display.addEventListener('change', function () {
+    var n = parseInt(display.value, 10);
+    if (isNaN(n) || n < 1) n = 1;
+    if (n > 99) n = 99;
+    display.value = n;
+  });
+  display.addEventListener('input', function () {
+    display.value = display.value.replace(/[^0-9]/g, '');
+  });
+});
+
+// 필터 칩 제거
+document.querySelectorAll('.chip.removable button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.closest('.chip').remove();
+  });
+});
+
+// 장바구니 담기 버튼 - 토스트 알림
+document.querySelectorAll('[data-action="add-to-cart"]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var qtyEl = document.querySelector('.qty-value');
+    var qty = qtyEl ? (parseInt(qtyEl.value, 10) || 1) : 1;
+    document.querySelectorAll('.cart-count').forEach(function (badge) {
+      var current = parseInt(badge.textContent, 10) || 0;
+      badge.textContent = current + qty;
+    });
+    window.showToast('장바구니에 담았어요 (' + qty + '개) 🛒');
+  });
+});
+
+// 장바구니 개별 삭제
+document.querySelectorAll('.cart-item .remove-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.closest('.cart-item').remove();
+  });
+});
+
+// 찜(위시리스트) 목록 관리 - 이 페이지를 보는 동안만 유지되는 데모 상태
+(function () {
+  var wishlist = []; // { brand, name }
+  var navBtn = document.getElementById('nav-wishlist-btn');
+  var badge = document.getElementById('wishlist-count');
+  var panel = document.getElementById('wishlist-panel');
+  var listEl = document.getElementById('wishlist-list');
+  var emptyEl = document.getElementById('wishlist-empty');
+
+  function findIndex(brand, name) {
+    for (var i = 0; i < wishlist.length; i++) {
+      if (wishlist[i].brand === brand && wishlist[i].name === name) return i;
+    }
+    return -1;
+  }
+
+  function renderPanel() {
+    if (!listEl) return;
+    listEl.innerHTML = '';
+    if (wishlist.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      return;
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+    wishlist.forEach(function (item, idx) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + item.brand + ' · ' + item.name + '</span><button style="border:none;background:none;color:var(--text-muted);cursor:pointer;" data-idx="' + idx + '">&times;</button>';
+      listEl.appendChild(li);
+    });
+    listEl.querySelectorAll('button[data-idx]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var idx = parseInt(btn.dataset.idx, 10);
+        var item = wishlist[idx];
+        wishlist.splice(idx, 1);
+        syncCardButtons(item.brand, item.name, false);
+        updateBadge();
+        renderPanel();
+      });
+    });
+  }
+
+  function updateBadge() {
+    if (!badge) return;
+    if (wishlist.length > 0) {
+      badge.style.display = 'flex';
+      badge.textContent = wishlist.length;
+      if (navBtn) navBtn.classList.add('nav-icon-active');
+    } else {
+      badge.style.display = 'none';
+      if (navBtn) navBtn.classList.remove('nav-icon-active');
+    }
+  }
+
+  function heartBurst(btn) {
+    var rect = btn.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    for (var i = 0; i < 6; i++) {
+      var p = document.createElement('span');
+      p.textContent = '♥';
+      p.style.cssText = 'position:fixed; left:' + cx + 'px; top:' + cy + 'px; color:var(--heart-red); font-size:' + (10 + Math.random()*8) + 'px; pointer-events:none; z-index:999; transition: transform 0.6s ease, opacity 0.6s ease;';
+      document.body.appendChild(p);
+      var angle = (Math.PI * 2 * i) / 6 + Math.random() * 0.5;
+      var dist = 30 + Math.random() * 20;
+      requestAnimationFrame(function (el, ang, d) {
+        return function () {
+          el.style.transform = 'translate(' + Math.cos(ang) * d + 'px,' + (Math.sin(ang) * d - 20) + 'px) scale(0.4)';
+          el.style.opacity = '0';
+        };
+      }(p, angle, dist));
+      setTimeout(function (el) { return function () { el.remove(); }; }(p), 650);
+    }
+  }
+
+  function setHeartIcon(btn, active) {
+    var wasActive = btn.classList.contains('wishlist-active');
+    btn.classList.toggle('wishlist-active', active);
+    if (active && !wasActive) {
+      heartBurst(btn);
+    }
+  }
+
+  function syncCardButtons(brand, name, active) {
+    document.querySelectorAll('.card-wishlist-btn').forEach(function (btn) {
+      if (btn.dataset.brand === brand && btn.dataset.name === name) {
+        setHeartIcon(btn, active);
+      }
+    });
+    var wishlistBtn = document.getElementById('wishlist-btn');
+    if (wishlistBtn && wishlistBtn.dataset.brand === brand && wishlistBtn.dataset.name === name) {
+      setHeartIcon(wishlistBtn, active);
+    }
+  }
+
+  window.toggleCardWishlist = function (btn) {
+    var brand = btn.dataset.brand;
+    var name = btn.dataset.name;
+    var idx = findIndex(brand, name);
+    var nowActive;
+    if (idx >= 0) {
+      wishlist.splice(idx, 1);
+      nowActive = false;
+    } else {
+      wishlist.push({ brand: brand, name: name });
+      nowActive = true;
+    }
+    syncCardButtons(brand, name, nowActive);
+    updateBadge();
+    renderPanel();
+  };
+
+  if (navBtn) {
+    navBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (panel) panel.classList.toggle('open');
+    });
+  }
+
+  var clearBtn = document.getElementById('wishlist-clear-btn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      wishlist.slice().forEach(function (item) {
+        syncCardButtons(item.brand, item.name, false);
+      });
+      wishlist = [];
+      updateBadge();
+      renderPanel();
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (panel && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== navBtn && !navBtn.contains(e.target)) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // 상세페이지 전용 찜 버튼과 연동
+  var detailWishlistBtn = document.getElementById('wishlist-btn');
+  if (detailWishlistBtn && detailWishlistBtn.dataset.brand) {
+    detailWishlistBtn.addEventListener('click', function () {
+      window.toggleCardWishlist(detailWishlistBtn);
+    });
+  }
+
+  updateBadge();
+  renderPanel();
+})();
+
+// 카테고리 사이드바 클릭 시 active 표시
+document.querySelectorAll('.filter-group .cat-item').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var group = el.closest('.filter-group');
+    group.querySelectorAll('.cat-item').forEach(function (s) {
+      s.classList.remove('active');
+    });
+    el.classList.add('active');
+  });
+});
+
+
+// 스크롤 시 헤더 그림자 + 요소 등장 애니메이션
+(function () {
+  var nav = document.querySelector('.nav');
+  function onNavScroll() {
+    if (!nav) return;
+    if (window.scrollY > 8) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', onNavScroll);
+  onNavScroll();
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in-view'); });
+  }
+})();
+
+
+// 다크모드 토글
+(function () {
+  var btn = document.getElementById('theme-toggle-btn');
+  if (!btn) return;
+  var icon = btn.querySelector('i');
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (icon) {
+      icon.classList.toggle('ti-moon', theme !== 'dark');
+      icon.classList.toggle('ti-sun', theme === 'dark');
+    }
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+
+// 오늘의 랜덤 코디 뽑기
+(function () {
+  var grid = document.getElementById('outfit-grid');
+  if (!grid) return;
+
+  var OUTFIT_SVGS = {"shirt": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    \n    <path d=\"M95 60 L120 85 L145 60\" fill=\"none\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.6\"/>\n    <circle cx=\"120\" cy=\"110\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"170\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"200\" r=\"2.5\" fill=\"var(--navy)\"/>\n    </svg>", "shirt_stripe": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    \n    <path d=\"M95 60 L120 85 L145 60\" fill=\"none\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.6\"/>\n    <circle cx=\"120\" cy=\"110\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"170\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <circle cx=\"120\" cy=\"200\" r=\"2.5\" fill=\"var(--navy)\"/>\n    <line x1=\"82\" y1=\"100\" x2=\"158\" y2=\"100\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"120\" x2=\"158\" y2=\"120\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"140\" x2=\"158\" y2=\"140\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"160\" x2=\"158\" y2=\"160\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"180\" x2=\"158\" y2=\"180\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/><line x1=\"82\" y1=\"200\" x2=\"158\" y2=\"200\" stroke=\"var(--navy)\" stroke-width=\"3\" opacity=\"0.35\"/></svg>", "shirt_denim": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 60 L75 85 L60 80 L45 115 L70 130 L80 105 L80 220 Q80 232 92 232 L148 232 Q160 232 160 220 L160 105 L170 130 L195 115 L180 80 L165 85 L145 60 Z\" fill=\"#dbe9f5\" stroke=\"#5b7fa6\"/>\n    \n    <path d=\"M95 60 L120 85 L145 60\" fill=\"none\" stroke=\"#5b7fa6\"/>\n    <line x1=\"120\" y1=\"85\" x2=\"120\" y2=\"225\" stroke=\"#5b7fa6\" stroke-width=\"2\" opacity=\"0.6\"/>\n    <circle cx=\"120\" cy=\"110\" r=\"2.5\" fill=\"#5b7fa6\"/>\n    <circle cx=\"120\" cy=\"140\" r=\"2.5\" fill=\"#5b7fa6\"/>\n    <circle cx=\"120\" cy=\"170\" r=\"2.5\" fill=\"#5b7fa6\"/>\n    <circle cx=\"120\" cy=\"200\" r=\"2.5\" fill=\"#5b7fa6\"/>\n    </svg>", "tshirt": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M95 58 L70 78 L48 108 L70 128 L82 108 L82 222 Q82 232 92 232 L148 232 Q158 232 158 222 L158 108 L170 128 L192 108 L170 78 L145 58 Q120 78 95 58 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <path d=\"M100 58 Q120 82 140 58\" fill=\"none\" stroke=\"var(--navy)\"/>\n    </svg>", "jacket": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M92 62 L68 84 L46 116 L68 136 L80 114 L80 224 Q80 234 92 234 L148 234 Q160 234 160 224 L160 114 L172 136 L194 116 L172 84 L148 62 L145 78 L120 90 L95 78 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <rect x=\"100\" y=\"60\" width=\"40\" height=\"14\" rx=\"4\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"90\" x2=\"120\" y2=\"230\" stroke=\"var(--navy)\" stroke-width=\"3\"/>\n    <path d=\"M113 100 L127 108 L113 116 L127 124 L113 132 L127 140 L113 148 L127 156 L113 164 L127 172 L113 180 L127 188 L113 196\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"1.5\" opacity=\"0.6\"/>\n    <rect x=\"62\" y=\"120\" width=\"20\" height=\"14\" rx=\"3\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"2.5\"/>\n    <rect x=\"158\" y=\"120\" width=\"20\" height=\"14\" rx=\"3\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"2.5\"/>\n    </svg>", "pants": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M78 55 L162 55 L166 90 L120 90 L120 95 L162 95 L172 232 L146 232 L122 118 L118 118 L102 232 L76 232 L78 95 L120 95 L120 90 L74 90 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <line x1=\"120\" y1=\"60\" x2=\"120\" y2=\"90\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.5\"/>\n    <line x1=\"90\" y1=\"110\" x2=\"90\" y2=\"150\" stroke=\"var(--navy)\" stroke-width=\"1.5\" opacity=\"0.3\"/>\n    <line x1=\"150\" y1=\"110\" x2=\"150\" y2=\"150\" stroke=\"var(--navy)\" stroke-width=\"1.5\" opacity=\"0.3\"/>\n    </svg>", "sneaker": "<svg viewBox=\"0 0 240 300\" class=\"illustration-svg\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"4\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n    <path d=\"M40 210 Q40 190 62 186 L92 178 Q110 165 128 168 L150 178 Q168 176 182 186 Q200 190 200 208 Q200 218 190 218 L48 218 Q40 218 40 210 Z\" fill=\"var(--navy-light)\" stroke=\"var(--navy)\"/>\n    <path d=\"M92 178 L100 150 L120 158 L128 168\" fill=\"none\" stroke=\"var(--navy)\"/>\n    <line x1=\"98\" y1=\"168\" x2=\"112\" y2=\"160\" stroke=\"var(--navy)\" stroke-width=\"2.5\"/>\n    <line x1=\"104\" y1=\"176\" x2=\"118\" y2=\"168\" stroke=\"var(--navy)\" stroke-width=\"2.5\"/>\n    <line x1=\"110\" y1=\"184\" x2=\"124\" y2=\"176\" stroke=\"var(--navy)\" stroke-width=\"2.5\"/>\n    <path d=\"M40 210 Q120 202 200 208\" fill=\"none\" stroke=\"var(--navy)\" stroke-width=\"2\" opacity=\"0.5\"/>\n    </svg>"};
+
+  var TOPS = [
+    { brand: 'ROUTINE', name: '피그먼트 오버핏 코튼 셔츠', price: 39000, svgCat: 'shirt' },
+    { brand: 'ROUTINE', name: '와이드 스트라이프 셔츠', price: 42000, svgCat: 'shirt_stripe' },
+    { brand: 'ROUTINE', name: '헨리넥 머슬핏 반팔티', price: 29000, svgCat: 'tshirt' },
+    { brand: 'BASIC LAB', name: '에어라이트 윈드브레이커 집업', price: 59000, svgCat: 'jacket' },
+    { brand: 'BASIC LAB', name: '옥스포드 버튼다운 셔츠', price: 45000, svgCat: 'shirt' },
+    { brand: 'GRID WORKS', name: '빈티지 데님 셔츠', price: 55000, svgCat: 'shirt_denim' },
+    { brand: 'DAILY ST.', name: '쿨링 린넨 셔츠', price: 38000, svgCat: 'shirt' }
+  ];
+  var BOTTOMS = [
+    { brand: 'GRID WORKS', name: '와이드 밴딩 팬츠', price: 45000, svgCat: 'pants' }
+  ];
+  var SHOES = [
+    { brand: 'DAILY ST.', name: '로우탑 캔버스 스니커즈', price: 49000, svgCat: 'sneaker' }
+  ];
+  var CAPTIONS = [
+    '오늘 같은 날엔 이 조합 어때요?',
+    'AI가 아니라 그냥 랜덤이지만... 나쁘지 않죠?',
+    '이 조합으로 나가면 후회 없어요 (아마도)',
+    '무난하면서 애쓴 티 안 나는 조합이에요',
+    '3초 만에 완성한 오늘의 착장',
+    '이 조합, 저장해두고 싶다면 찜 버튼도 눌러보세요'
+  ];
+
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function won(n) {
+    return n.toLocaleString('ko-KR') + '원';
+  }
+
+  function renderCard(item, label) {
+    var svg = OUTFIT_SVGS[item.svgCat] || OUTFIT_SVGS.shirt;
+    var div = document.createElement('div');
+    div.className = 'outfit-card';
+    div.innerHTML =
+      '<div class="illustration" role="img" aria-label="' + item.name + '">' + svg + '</div>' +
+      '<p class="outfit-slot-label">' + label + '</p>' +
+      '<p class="outfit-item-name">' + item.brand + ' · ' + item.name + '</p>' +
+      '<p class="outfit-item-price">' + won(item.price) + '</p>';
+    return div;
+  }
+
+  function shuffle() {
+    var top = pick(TOPS);
+    var bottom = pick(BOTTOMS);
+    var shoe = pick(SHOES);
+
+    grid.innerHTML = '';
+    grid.appendChild(renderCard(top, 'TOP'));
+    grid.appendChild(renderCard(bottom, 'BOTTOM'));
+    grid.appendChild(renderCard(shoe, 'SHOES'));
+
+    var captionEl = document.getElementById('outfit-caption');
+    var totalEl = document.getElementById('outfit-total');
+    if (captionEl) captionEl.textContent = pick(CAPTIONS);
+    if (totalEl) totalEl.textContent = '이 조합 합계: ' + won(top.price + bottom.price + shoe.price);
+  }
+
+  var btn = document.getElementById('outfit-shuffle-btn');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      btn.classList.remove('spinning');
+      void btn.offsetWidth;
+      btn.classList.add('spinning');
+      shuffle();
+    });
+  }
+
+  shuffle();
+})();
+
+
+// 전역 컨페티
+window.spawnConfetti = window.spawnConfetti || function () {
+  var colors = ['#0c447c', '#3d8bd4', '#e0245e', '#f2b705', '#1a8a4a'];
+  for (var i = 0; i < 28; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (1.6 + Math.random() * 1.2) + 's';
+    piece.style.animationDelay = (Math.random() * 0.3) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(piece);
+    (function (el) {
+      el.addEventListener('animationend', function () { el.remove(); });
+    })(piece);
+  }
+};
+
+// 쿠폰 룰렛
+(function () {
+  var fab = document.getElementById('coupon-fab');
+  var overlay = document.getElementById('coupon-modal-overlay');
+  var closeBtn = document.getElementById('coupon-modal-close');
+  var spinBtn = document.getElementById('wheel-spin-btn');
+  var wheel = document.getElementById('wheel-svg-container');
+  var resultEl = document.getElementById('coupon-result');
+  if (!fab || !overlay) return;
+
+  var SEGMENTS = ['5% 할인', '꽝 😅', '10% 할인', '무료배송', '15% 할인', '3천원 쿠폰'];
+  var SEG_ANGLE = 360 / SEGMENTS.length;
+  var spun = false;
+  var currentRotation = 0;
+
+  fab.addEventListener('click', function () {
+    overlay.classList.add('open');
+  });
+  closeBtn.addEventListener('click', function () {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+
+  spinBtn.addEventListener('click', function () {
+    if (spun) return;
+    spun = true;
+    spinBtn.disabled = true;
+    spinBtn.textContent = '두근두근...';
+    resultEl.textContent = '';
+
+    var index = Math.floor(Math.random() * SEGMENTS.length);
+    var jitter = (Math.random() * (SEG_ANGLE - 10)) - (SEG_ANGLE - 10) / 2;
+    var target = 1800 - (index + 0.5) * SEG_ANGLE + jitter;
+    currentRotation += target;
+    wheel.style.transform = 'rotate(' + currentRotation + 'deg)';
+
+    setTimeout(function () {
+      var result = SEGMENTS[index];
+      resultEl.textContent = result === '꽝 😅' ? '앗, 다음 기회에 다시 도전해보세요!' : '🎉 ' + result + ' 당첨! (데모 화면입니다)';
+      spinBtn.textContent = '오늘은 다 쓰셨어요';
+      if (result !== '꽝 😅') {
+        window.spawnConfetti();
+      }
+    }, 3600);
+  });
+})();
+
+// 코나미 코드 이스터에그
+(function () {
+  var sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  var progress = 0;
+
+  document.addEventListener('keydown', function (e) {
+    var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (key === sequence[progress]) {
+      progress += 1;
+      if (progress === sequence.length) {
+        progress = 0;
+        window.spawnConfetti();
+        window.showToast('\ud83c\udfae 이스터에그 발견! 숨겨진 쿠폰코드: STYLEHUB2026');
+      }
+    } else {
+      progress = (key === sequence[0]) ? 1 : 0;
+    }
+  });
+})();
+
+
+// 뉴스레터 구독 폼 (데모)
+(function () {
+  var form = document.getElementById('newsletter-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.showToast('구독 완료! (데모 화면입니다)');
+    form.reset();
+  });
+})();
+
+
+// 페이지 전환 페이드 효과
+(function () {
+  var pages = ['index.html', 'product.html', 'category.html', 'search.html', 'cart.html'];
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+    var isInternalPage = pages.some(function (p) { return href === p || href.endsWith('/' + p); });
+    if (!isInternalPage) return;
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
+
+    e.preventDefault();
+    document.body.classList.add('page-fade-out');
+    setTimeout(function () {
+      window.location.href = href;
+    }, 200);
+  });
+})();
+
+
+// 빠른보기(퀵뷰) 모달
+window.openQuickView = function (btn) {
+  var card = btn.closest('.card');
+  if (!card) return;
+  var illo = card.querySelector('.illustration');
+  var brand = card.querySelector('.brand');
+  var name = card.querySelector('.name');
+  var price = card.querySelector('.price');
+  var illoBox = document.getElementById('quickview-illustration');
+  if (illoBox) illoBox.innerHTML = illo ? illo.innerHTML : '';
+  var brandEl = document.getElementById('quickview-brand');
+  var nameEl = document.getElementById('quickview-name');
+  var priceEl = document.getElementById('quickview-price');
+  if (brandEl) brandEl.textContent = brand ? brand.textContent : '';
+  if (nameEl) nameEl.textContent = name ? name.textContent : '';
+  if (priceEl) priceEl.textContent = price ? price.textContent : '';
+  var overlay = document.getElementById('quickview-overlay');
+  if (overlay) overlay.classList.add('open');
+};
+
+(function () {
+  var overlay = document.getElementById('quickview-overlay');
+  if (!overlay) return;
+  var closeBtn = document.getElementById('quickview-close');
+  var addBtn = document.getElementById('quickview-add-cart');
+
+  closeBtn.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  addBtn.addEventListener('click', function () {
+    document.querySelectorAll('.cart-count').forEach(function (badge) {
+      var current = parseInt(badge.textContent, 10) || 0;
+      badge.textContent = current + 1;
+    });
+    window.showToast('장바구니에 담았어요 🛒');
+    overlay.classList.remove('open');
+  });
+})();
+
+
+// 키보드 단축키: Esc로 모달/패널 닫기, '/' 로 검색 포커스
+(function () {
+  document.addEventListener('keydown', function (e) {
+    var active = document.activeElement;
+    var isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA');
+
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.coupon-modal-overlay.open').forEach(function (el) {
+        el.classList.remove('open');
+      });
+      var wishlistPanel = document.getElementById('wishlist-panel');
+      if (wishlistPanel) wishlistPanel.classList.remove('open');
+      return;
+    }
+
+    if (e.key === '/' && !isTyping) {
+      var searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      } else {
+        e.preventDefault();
+        window.location.href = 'search.html';
+      }
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
