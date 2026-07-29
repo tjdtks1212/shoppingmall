@@ -194,6 +194,7 @@ button {
   width: 16px;
   height: 16px;
   border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -453,15 +454,20 @@ button {
   top: 100%;
   right: 0;
   margin-top: 8px;
-  width: 260px;
+  width: 280px;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-top: 3px solid var(--heart-red);
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
   padding: 14px;
   z-index: 50;
   display: none;
 }
+#wishlist-count {
+  background: var(--heart-red);
+}
+
 .wishlist-panel.open {
   display: block;
 }
@@ -478,11 +484,22 @@ button {
 }
 .wishlist-panel li {
   font-size: 12px;
-  padding: 6px 0;
+  padding: 8px 0;
   border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 8px;
+}
+.wishlist-item-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  flex: 1;
+}
+.wishlist-item-link:hover {
+  color: var(--navy);
+  text-decoration: underline;
 }
 .wishlist-panel li:last-child {
   border-bottom: none;
@@ -1808,7 +1825,7 @@ document.querySelectorAll('.cart-item .remove-btn').forEach(function (btn) {
     if (emptyEl) emptyEl.style.display = 'none';
     wishlist.forEach(function (item, idx) {
       var li = document.createElement('li');
-      li.innerHTML = '<span>' + item.brand + ' · ' + item.name + '</span><button style="border:none;background:none;color:var(--text-muted);cursor:pointer;" data-idx="' + idx + '">&times;</button>';
+      li.innerHTML = '<a href="product.html" class="wishlist-item-link">' + item.brand + ' · ' + item.name + '</a><button style="border:none;background:none;color:var(--text-muted);cursor:pointer; flex-shrink:0;" data-idx="' + idx + '">&times;</button>';
       listEl.appendChild(li);
     });
     listEl.querySelectorAll('button[data-idx]').forEach(function (btn) {
