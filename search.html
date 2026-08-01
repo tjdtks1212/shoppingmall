@@ -1169,8 +1169,8 @@ select {
   left: 50%;
   top: 24px;
   transform: translateX(-50%) translateY(-20px);
-  background: var(--text-primary);
-  color: #fff;
+  background: #1c2128;
+  color: #ffffff;
   padding: 14px 22px;
   border-radius: 999px;
   font-size: 13px;
@@ -1213,16 +1213,16 @@ select {
 }
 </style>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.44.0/dist/tabler-icons.min.css" />
 </head>
 <body>
 
 <div class="util-bar">
   <div class="wrap">
     <span>무료배송 5만원 이상 구매시</span>
-    <div class="util-links">
-      <a href="#">로그인</a>
-      <a href="#">회원가입</a>
+    <div class="util-links" id="util-auth-links">
+      <a href="#" id="util-login-link">로그인</a>
+      <a href="#" id="util-signup-link">회원가입</a>
       <a href="#">고객센터</a>
     </div>
   </div>
@@ -1353,7 +1353,11 @@ select {
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    getAuth, signInAnonymously, onAuthStateChanged,
+    createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+    EmailAuthProvider, linkWithCredential, sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyD88U6XFJxD7LCzFQ_qtJeNE2di1TPQxn4",
@@ -1370,15 +1374,25 @@ select {
   const auth = getAuth(app);
   console.log('[Firebase] app/auth/db 준비 완료, 로그인 시도 중...');
 
+  var fbReadyResolved = false;
   window.fbReady = new Promise(function (resolve) {
     onAuthStateChanged(auth, function (user) {
       if (user) {
         window.fbUid = user.uid;
-        console.log('[Firebase] 로그인 성공! uid =', user.uid);
-        resolve(user.uid);
+        window.fbUser = user;
+        window.fbIsAnonymous = user.isAnonymous;
+        console.log('[Firebase] 로그인 상태! uid =', user.uid, '/ 익명여부:', user.isAnonymous, '/ 이메일:', user.email);
+        if (!fbReadyResolved) {
+          fbReadyResolved = true;
+          resolve(user.uid);
+        }
       } else {
+        window.fbUser = null;
         console.log('[Firebase] 로그아웃 상태 감지됨');
       }
+      window.dispatchEvent(new CustomEvent('fbAuthChanged', {
+        detail: user ? { uid: user.uid, email: user.email, isAnonymous: user.isAnonymous } : null
+      }));
     });
     signInAnonymously(auth).then(function () {
       console.log('[Firebase] signInAnonymously 호출 성공');
@@ -1387,25 +1401,74 @@ select {
     });
   });
 
+  window.fbSignUp = async function (email, password) {
+    var current = auth.currentUser;
+    if (current && current.isAnonymous) {
+      var credential = EmailAuthProvider.credential(email, password);
+      var result = await linkWithCredential(current, credential);
+      return result.user;
+    } else {
+      var result2 = await createUserWithEmailAndPassword(auth, email, password);
+      return result2.user;
+    }
+  };
+
+  window.fbSignIn = async function (email, password) {
+    var result = await signInWithEmailAndPassword(auth, email, password);
+    return result.user;
+  };
+
+  window.fbSignOut = async function () {
+    await signOut(auth);
+    await signInAnonymously(auth);
+  };
+
+  window.fbResetPassword = async function (email) {
+    await sendPasswordResetEmail(auth, email);
+  };
+
   window.fbSaveCart = async function (items) {
-    var uid = await window.fbReady;
+    await window.fbReady;
+    var uid = window.fbUid;
     await setDoc(doc(db, 'carts', uid), { items: items, updatedAt: Date.now() });
   };
   window.fbLoadCart = async function () {
-    var uid = await window.fbReady;
+    await window.fbReady;
+    var uid = window.fbUid;
     var snap = await getDoc(doc(db, 'carts', uid));
     return snap.exists() ? (snap.data().items || []) : [];
   };
   window.fbSaveWishlist = async function (items) {
-    var uid = await window.fbReady;
+    await window.fbReady;
+    var uid = window.fbUid;
     await setDoc(doc(db, 'wishlists', uid), { items: items, updatedAt: Date.now() });
   };
   window.fbLoadWishlist = async function () {
-    var uid = await window.fbReady;
+    await window.fbReady;
+    var uid = window.fbUid;
     var snap = await getDoc(doc(db, 'wishlists', uid));
     return snap.exists() ? (snap.data().items || []) : [];
   };
 </script>
+
+<div class="coupon-modal-overlay" id="auth-overlay">
+  <div class="coupon-modal" style="width:340px; text-align:left;">
+    <button class="coupon-modal-close" id="auth-close"><i class="ti ti-x"></i></button>
+    <div class="tabs" style="margin-bottom:20px;">
+      <span class="active" id="auth-tab-login" data-auth-tab="login">로그인</span>
+      <span id="auth-tab-signup" data-auth-tab="signup">회원가입</span>
+    </div>
+    <form id="auth-form">
+      <input type="email" id="auth-email" placeholder="이메일" required style="width:100%; box-sizing:border-box; padding:11px 12px; margin-bottom:10px; border:1px solid var(--border); border-radius:var(--radius); font-size:13px; background:var(--bg); color:var(--text-primary); font-family:inherit;" />
+      <input type="password" id="auth-password" placeholder="비밀번호 (6자 이상)" required minlength="6" style="width:100%; box-sizing:border-box; padding:11px 12px; margin-bottom:14px; border:1px solid var(--border); border-radius:var(--radius); font-size:13px; background:var(--bg); color:var(--text-primary); font-family:inherit;" />
+      <button type="submit" class="btn btn-primary" id="auth-submit-btn" style="width:100%; padding:12px;">로그인</button>
+    </form>
+    <p id="auth-error" style="font-size:12px; color:var(--heart-red); margin:10px 0 0; display:none;"></p>
+    <p id="auth-reset-msg" style="font-size:12px; color:#1a8a4a; margin:10px 0 0; display:none;"></p>
+    <p style="text-align:right; margin:10px 0 0;"><a href="#" id="auth-forgot-link" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">비밀번호를 잊으셨나요?</a></p>
+    <p style="font-size:11px; color:var(--text-muted); margin:14px 0 0;">회원가입 시 지금 담긴 장바구니·찜 목록이 새 계정으로 그대로 이어져요.</p>
+  </div>
+</div>
 
 <script type="module">
 // 전역 토스트 알림
@@ -1902,6 +1965,7 @@ window.spawnConfetti = window.spawnConfetti || function () {
   var progress = 0;
 
   document.addEventListener('keydown', function (e) {
+    if (!e || !e.key) return;
     var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
     if (key === sequence[progress]) {
       progress += 1;
@@ -2066,6 +2130,136 @@ if (window.fbLoadCart) {
     console.error('장바구니 개수 동기화 실패', err);
   });
 }
+
+
+// 회원가입/로그인 모달
+(function () {
+  var overlay = document.getElementById('auth-overlay');
+  if (!overlay) return;
+  var closeBtn = document.getElementById('auth-close');
+  var loginLink = document.getElementById('util-login-link');
+  var signupLink = document.getElementById('util-signup-link');
+  var tabLogin = document.getElementById('auth-tab-login');
+  var tabSignup = document.getElementById('auth-tab-signup');
+  var form = document.getElementById('auth-form');
+  var emailInput = document.getElementById('auth-email');
+  var passwordInput = document.getElementById('auth-password');
+  var submitBtn = document.getElementById('auth-submit-btn');
+  var errorEl = document.getElementById('auth-error');
+  var resetMsgEl = document.getElementById('auth-reset-msg');
+  var forgotLink = document.getElementById('auth-forgot-link');
+  var authLinksEl = document.getElementById('util-auth-links');
+  var mode = 'login';
+
+  function setMode(m) {
+    mode = m;
+    tabLogin.classList.toggle('active', m === 'login');
+    tabSignup.classList.toggle('active', m === 'signup');
+    submitBtn.textContent = m === 'login' ? '로그인' : '회원가입';
+    errorEl.style.display = 'none';
+    if (resetMsgEl) resetMsgEl.style.display = 'none';
+  }
+
+  if (forgotLink) {
+    forgotLink.addEventListener('click', async function (e) {
+      e.preventDefault();
+      errorEl.style.display = 'none';
+      var email = emailInput.value.trim();
+      if (!email) {
+        errorEl.textContent = '먼저 이메일을 입력해주세요.';
+        errorEl.style.display = 'block';
+        return;
+      }
+      try {
+        await window.fbResetPassword(email);
+        resetMsgEl.textContent = '비밀번호 재설정 메일을 보냈어요. 메일함을 확인해주세요.';
+        resetMsgEl.style.display = 'block';
+      } catch (err) {
+        console.error('[Auth] 비밀번호 재설정 오류:', err.code, err.message);
+        errorEl.textContent = ERROR_MESSAGES[err.code] || '오류가 발생했어요. 이메일을 확인해주세요.';
+        errorEl.style.display = 'block';
+      }
+    });
+  }
+
+  function openModal(m) {
+    setMode(m);
+    form.reset();
+    overlay.classList.add('open');
+  }
+
+  if (loginLink) loginLink.addEventListener('click', function (e) { e.preventDefault(); openModal('login'); });
+  if (signupLink) signupLink.addEventListener('click', function (e) { e.preventDefault(); openModal('signup'); });
+  tabLogin.addEventListener('click', function () { setMode('login'); });
+  tabSignup.addEventListener('click', function () { setMode('signup'); });
+  closeBtn.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) overlay.classList.remove('open'); });
+
+  var ERROR_MESSAGES = {
+    'auth/email-already-in-use': '이미 가입된 이메일이에요. 로그인을 이용해주세요.',
+    'auth/invalid-email': '이메일 형식이 올바르지 않아요.',
+    'auth/weak-password': '비밀번호는 6자 이상이어야 해요.',
+    'auth/user-not-found': '가입되지 않은 이메일이에요.',
+    'auth/wrong-password': '비밀번호가 올바르지 않아요.',
+    'auth/invalid-credential': '이메일 또는 비밀번호가 올바르지 않아요.',
+    'auth/credential-already-in-use': '이미 다른 계정에 연결된 정보예요.'
+  };
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorEl.style.display = 'none';
+    submitBtn.disabled = true;
+    var email = emailInput.value.trim();
+    var password = passwordInput.value;
+    try {
+      if (mode === 'signup') {
+        await window.fbSignUp(email, password);
+        window.showToast('회원가입 완료! 장바구니·찜 목록이 그대로 이어졌어요 🎉');
+      } else {
+        await window.fbSignIn(email, password);
+        window.showToast('로그인됐어요 👋');
+      }
+      overlay.classList.remove('open');
+      form.reset();
+    } catch (err) {
+      console.error('[Auth] 오류:', err.code, err.message);
+      errorEl.textContent = ERROR_MESSAGES[err.code] || '오류가 발생했어요. 다시 시도해주세요.';
+      errorEl.style.display = 'block';
+    }
+    submitBtn.disabled = false;
+  });
+
+  function renderAuthLinks(user) {
+    if (!authLinksEl) return;
+    if (user && !user.isAnonymous) {
+      authLinksEl.innerHTML =
+        '<span style="color:var(--text-primary); font-weight:600;">' + user.email + '님</span>' +
+        '<a href="#" id="util-logout-link">로그아웃</a>' +
+        '<a href="#">고객센터</a>';
+      var logoutLink = document.getElementById('util-logout-link');
+      if (logoutLink) {
+        logoutLink.addEventListener('click', async function (e) {
+          e.preventDefault();
+          await window.fbSignOut();
+          window.showToast('로그아웃됐어요. 이용해주셔서 감사해요!');
+        });
+      }
+    } else {
+      authLinksEl.innerHTML =
+        '<a href="#" id="util-login-link">로그인</a>' +
+        '<a href="#" id="util-signup-link">회원가입</a>' +
+        '<a href="#">고객센터</a>';
+      var newLoginLink = document.getElementById('util-login-link');
+      var newSignupLink = document.getElementById('util-signup-link');
+      if (newLoginLink) newLoginLink.addEventListener('click', function (e) { e.preventDefault(); openModal('login'); });
+      if (newSignupLink) newSignupLink.addEventListener('click', function (e) { e.preventDefault(); openModal('signup'); });
+    }
+  }
+
+  window.addEventListener('fbAuthChanged', function (e) {
+    renderAuthLinks(e.detail);
+  });
+})();
 
 </script>
 </body>
