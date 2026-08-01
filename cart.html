@@ -130,6 +130,16 @@ button {
   gap: 28px;
   font-size: 14px;
 }
+.hamburger-btn {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: var(--text-primary);
+  padding: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+}
 .nav .menu a {
   position: relative;
   padding-bottom: 4px;
@@ -970,7 +980,35 @@ select {
 }
 
 @media (max-width: 860px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+  }
   .nav .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    padding: 8px 20px 16px;
+  }
+  .nav .menu.mobile-open {
+    display: flex;
+  }
+  .nav .menu a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+  }
+  .nav .menu a:last-child {
+    border-bottom: none;
+  }
+  .nav .menu a::after {
     display: none;
   }
   .nav .wrap {
@@ -1255,8 +1293,9 @@ select {
 
 <div class="nav">
   <div class="wrap">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기"><i class="ti ti-menu-2"></i></button>
     <a href="index.html" class="logo">STYLEHUB</a>
-    <div class="menu">
+    <div class="menu" id="nav-menu">
       <a href="category.html">BEST</a>
       <a href="category.html">NEW</a>
       <a href="category.html">브랜드관</a>
@@ -1376,6 +1415,21 @@ select {
     </div>
     <button class="btn btn-primary" id="wheel-spin-btn" style="width:100%; margin-top:18px; padding:13px;">룰렛 돌리기</button>
     <p class="coupon-result" id="coupon-result"></p>
+  </div>
+</div>
+
+<div class="coupon-modal-overlay" id="order-complete-overlay">
+  <div class="coupon-modal" style="width:360px;">
+    <button class="coupon-modal-close" id="order-complete-close"><i class="ti ti-x"></i></button>
+    <div style="width:56px; height:56px; border-radius:50%; background:#e7f6ec; color:#1a8a4a; display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 16px;">✓</div>
+    <p class="coupon-modal-title">주문이 완료됐어요!</p>
+    <p class="coupon-modal-sub" id="order-complete-number"></p>
+    <div class="summary-card" style="text-align:left; margin-top:6px;">
+      <div class="summary-row"><span>주문 상품</span><span id="order-complete-count">0개</span></div>
+      <div class="summary-row total"><span>결제 금액</span><span id="order-complete-total">0원</span></div>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin:14px 0 18px;">실제 결제는 진행되지 않는 연습용 화면이에요.</p>
+    <a href="index.html" class="btn btn-primary" style="width:100%; display:block; box-sizing:border-box; text-decoration:none; text-align:center; padding:12px;">쇼핑 계속하기</a>
   </div>
 </div>
 
@@ -1986,6 +2040,38 @@ document.querySelectorAll('.filter-group .cat-item').forEach(function (el) {
     });
   }
 
+  // 주문하기 버튼 - 선택된 상품 주문 완료 처리 (실제 결제 없음, 데모)
+  checkoutBtn.addEventListener('click', function () {
+    var checkedItems = Array.from(document.querySelectorAll('.cart-item')).filter(function (el) {
+      var cb = el.querySelector('.item-checkbox');
+      return cb && cb.checked;
+    });
+    if (checkedItems.length === 0) {
+      window.showToast('주문할 상품을 선택해주세요.');
+      return;
+    }
+
+    var orderNumber = 'STY' + Date.now().toString().slice(-8);
+    var totalText = document.getElementById('summary-total').textContent;
+    document.getElementById('order-complete-number').textContent = '주문번호 ' + orderNumber;
+    document.getElementById('order-complete-count').textContent = checkedItems.length + '개';
+    document.getElementById('order-complete-total').textContent = totalText;
+    document.getElementById('order-complete-overlay').classList.add('open');
+
+    checkedItems.forEach(function (el) { el.remove(); });
+    update();
+    persist();
+  });
+
+  var orderOverlay = document.getElementById('order-complete-overlay');
+  var orderClose = document.getElementById('order-complete-close');
+  if (orderOverlay && orderClose) {
+    orderClose.addEventListener('click', function () { orderOverlay.classList.remove('open'); });
+    orderOverlay.addEventListener('click', function (e) {
+      if (e.target === orderOverlay) orderOverlay.classList.remove('open');
+    });
+  }
+
   // Firestore에서 장바구니 불러와서 렌더링
   window.fbLoadCart().then(function (items) {
     renderItems(items || []);
@@ -2252,6 +2338,8 @@ window.openQuickView = function (btn) {
       });
       var wishlistPanel = document.getElementById('wishlist-panel');
       if (wishlistPanel) wishlistPanel.classList.remove('open');
+      var navMenu = document.getElementById('nav-menu');
+      if (navMenu) navMenu.classList.remove('mobile-open');
       return;
     }
 
@@ -2415,6 +2503,27 @@ if (window.fbLoadCart) {
 
   window.addEventListener('fbAuthChanged', function (e) {
     renderAuthLinks(e.detail);
+  });
+})();
+
+
+// 모바일 햄버거 메뉴
+(function () {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('nav-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('mobile-open');
+  });
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menu.classList.remove('mobile-open');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('mobile-open') && !menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      menu.classList.remove('mobile-open');
+    }
   });
 })();
 

@@ -130,6 +130,16 @@ button {
   gap: 28px;
   font-size: 14px;
 }
+.hamburger-btn {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: var(--text-primary);
+  padding: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+}
 .nav .menu a {
   position: relative;
   padding-bottom: 4px;
@@ -1022,7 +1032,35 @@ select {
 }
 
 @media (max-width: 860px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+  }
   .nav .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    padding: 8px 20px 16px;
+  }
+  .nav .menu.mobile-open {
+    display: flex;
+  }
+  .nav .menu a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+  }
+  .nav .menu a:last-child {
+    border-bottom: none;
+  }
+  .nav .menu a::after {
     display: none;
   }
   .nav .wrap {
@@ -1325,8 +1363,9 @@ select {
 
 <div class="nav">
   <div class="wrap">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기"><i class="ti ti-menu-2"></i></button>
     <a href="index.html" class="logo">STYLEHUB</a>
-    <div class="menu">
+    <div class="menu" id="nav-menu">
       <a href="category.html">BEST</a>
       <a href="category.html">NEW</a>
       <a href="category.html">브랜드관</a>
@@ -2387,6 +2426,8 @@ window.openQuickView = function (btn) {
       });
       var wishlistPanel = document.getElementById('wishlist-panel');
       if (wishlistPanel) wishlistPanel.classList.remove('open');
+      var navMenu = document.getElementById('nav-menu');
+      if (navMenu) navMenu.classList.remove('mobile-open');
       return;
     }
 
@@ -2550,6 +2591,27 @@ if (window.fbLoadCart) {
 
   window.addEventListener('fbAuthChanged', function (e) {
     renderAuthLinks(e.detail);
+  });
+})();
+
+
+// 모바일 햄버거 메뉴
+(function () {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('nav-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    menu.classList.toggle('mobile-open');
+  });
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menu.classList.remove('mobile-open');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('mobile-open') && !menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      menu.classList.remove('mobile-open');
+    }
   });
 })();
 
