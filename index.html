@@ -1503,23 +1503,24 @@ select {
         window.fbUid = user.uid;
         window.fbUser = user;
         window.fbIsAnonymous = user.isAnonymous;
-        console.log('[Firebase] 로그인 상태! uid =', user.uid, '/ 익명여부:', user.isAnonymous, '/ 이메일:', user.email);
+        console.log('[Firebase] 로그인 상태 유지됨! uid =', user.uid, '/ 익명여부:', user.isAnonymous, '/ 이메일:', user.email);
         if (!fbReadyResolved) {
           fbReadyResolved = true;
           resolve(user.uid);
         }
       } else {
         window.fbUser = null;
-        console.log('[Firebase] 로그아웃 상태 감지됨');
+        console.log('[Firebase] 세션 없음 - 새 임시(익명) 계정 생성 시도...');
+        // 기존 로그인 세션이 없을 때만 새 익명 계정을 만듦 (있으면 절대 덮어쓰지 않음)
+        signInAnonymously(auth).then(function () {
+          console.log('[Firebase] signInAnonymously 호출 성공');
+        }).catch(function (err) {
+          console.error('[Firebase] 익명 로그인 오류:', err.code, err.message);
+        });
       }
       window.dispatchEvent(new CustomEvent('fbAuthChanged', {
         detail: user ? { uid: user.uid, email: user.email, isAnonymous: user.isAnonymous } : null
       }));
-    });
-    signInAnonymously(auth).then(function () {
-      console.log('[Firebase] signInAnonymously 호출 성공');
-    }).catch(function (err) {
-      console.error('[Firebase] 익명 로그인 오류:', err.code, err.message);
     });
   });
 
